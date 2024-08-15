@@ -1,21 +1,34 @@
-CREATE TABLE `products` (
+CREATE TABLE `produtos` (
   `id` integer PRIMARY KEY,
-  `name` varchar(255),
-  `storage` integer,
-  `value` double,
-  `image` blob
+  `nome` varchar(255),
+  `estoque` integer,
+  `preco` double,
+  `imagem` blob
 );
 
-CREATE TABLE `size` (
+CREATE TABLE `servicos` (
+  `id` integer PRIMARY KEY,
+  `nome` varchar(255),
+  `descricao` varchar(255),
+  `imagem` blob
+);
+
+CREATE TABLE `tipo` (
   `id` integer PRIMARY KEY,
   `description` varchar(255),
+  `servicos_id` integer
+);
+
+CREATE TABLE `tamanho_produto` (
+  `id` integer PRIMARY KEY,
+  `nome` varchar(255),
   `product_id` integer
 );
 
-CREATE TABLE `type` (
+CREATE TABLE `tamanho_servicos` (
   `id` integer PRIMARY KEY,
-  `description` varchar(255),
-  `product_id` integer
+  `nome` varchar(255),
+  `servicos_id` integer
 );
 
 CREATE TABLE `orders` (
@@ -38,7 +51,19 @@ CREATE TABLE `order_products` (
   `produt_id` integer,
   `order_id` integer,
   `quantity` integer,
+  `tipo` varchar(255),
+  `tamanho` varchar(255),
   `value_on_sell` double
+);
+
+CREATE TABLE `pedido_servicos` (
+  `id` integer PRIMARY KEY,
+  `servicos_id` integer,
+  `orders_id` integer,
+  `quantity` integer,
+  `tipo` varchar(255),
+  `tamanho` varchar(255),
+  `valor_venda` double
 );
 
 CREATE TABLE `address` (
@@ -57,8 +82,14 @@ ALTER TABLE `orders` ADD FOREIGN KEY (`id`) REFERENCES `users` (`id`);
 
 ALTER TABLE `order_products` ADD FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`);
 
-ALTER TABLE `type` ADD FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
+ALTER TABLE `tipo` ADD FOREIGN KEY (`servicos_id`) REFERENCES `servicos` (`id`);
 
-ALTER TABLE `size` ADD FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
+ALTER TABLE `tamanho_produto` ADD FOREIGN KEY (`product_id`) REFERENCES `produtos` (`id`);
 
-ALTER TABLE `order_products` ADD FOREIGN KEY (`produt_id`) REFERENCES `products` (`id`);
+ALTER TABLE `order_products` ADD FOREIGN KEY (`produt_id`) REFERENCES `produtos` (`id`);
+
+ALTER TABLE `pedido_servicos` ADD FOREIGN KEY (`orders_id`) REFERENCES `orders` (`id`);
+
+ALTER TABLE `pedido_servicos` ADD FOREIGN KEY (`servicos_id`) REFERENCES `servicos` (`id`);
+
+ALTER TABLE `tamanho_servicos` ADD FOREIGN KEY (`servicos_id`) REFERENCES `servicos` (`id`);
