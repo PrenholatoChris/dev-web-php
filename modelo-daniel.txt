@@ -1,0 +1,64 @@
+CREATE TABLE `products` (
+  `id` integer PRIMARY KEY,
+  `name` varchar(255),
+  `storage` integer,
+  `value` double,
+  `image` blob
+);
+
+CREATE TABLE `size` (
+  `id` integer PRIMARY KEY,
+  `description` varchar(255),
+  `product_id` integer
+);
+
+CREATE TABLE `type` (
+  `id` integer PRIMARY KEY,
+  `description` varchar(255),
+  `product_id` integer
+);
+
+CREATE TABLE `orders` (
+  `id` integer PRIMARY KEY,
+  `user_id` integer,
+  `address_id` integer,
+  `date` timestamp
+);
+
+CREATE TABLE `users` (
+  `id` integer PRIMARY KEY,
+  `username` varchar(255),
+  `password` varchar(255),
+  `email` varchar(255),
+  `created_at` timestamp
+);
+
+CREATE TABLE `order_products` (
+  `id` integer PRIMARY KEY,
+  `produt_id` integer,
+  `order_id` integer,
+  `quantity` integer,
+  `value_on_sell` double
+);
+
+CREATE TABLE `address` (
+  `id` integer PRIMARY KEY,
+  `user_id` integer,
+  `CEP` varchar(255),
+  `Rua` varchar(255),
+  `complemento` varchar(255),
+  `bairro` varchar(255),
+  `numero` integer
+);
+
+ALTER TABLE `address` ADD FOREIGN KEY (`id`) REFERENCES `users` (`id`);
+
+ALTER TABLE `orders` ADD FOREIGN KEY (`id`) REFERENCES `users` (`id`);
+
+ALTER TABLE `order_products` ADD FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`);
+
+ALTER TABLE `type` ADD FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
+
+ALTER TABLE `size` ADD FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
+
+ALTER TABLE `order_products` ADD FOREIGN KEY (`produt_id`) REFERENCES `products` (`id`);
