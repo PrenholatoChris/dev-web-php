@@ -29,7 +29,7 @@
             <label for="vSenhaConf">Confirmar Senha</label>
             <div class="flex flex-row bg-white rounded-md px-2 py-0.5">
                 <i class="bi-lock mr-2 text-slate-400"></i>
-                <input type="text" name="vSenha" class="w-full text-slate-800 focus:outline-none focus:ring-0 focus:border-transparent focus:bg-transparent focus:shadow-none" placeholder="Senha">
+                <input type="text" name="vSenhaConf" class="w-full text-slate-800 focus:outline-none focus:ring-0 focus:border-transparent focus:bg-transparent focus:shadow-none" placeholder="Senha">
             </div>
         </div>
         <input type="text" name="vOpcao" value="1" hidden>

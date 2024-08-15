@@ -2,16 +2,18 @@
     class Usuario {
         private $id;
         private $nome;
+        private $tel;
         private $email;
-        private $password;
+        private $senha;
         private $type;
 
-        function setUsuario($nome, $email, $password, $type)
+        function setUsuario($nome, $email, $senha, $telefone, $type)
         {
             $this->nome = $nome;
             $this->email = $email;
-            $this->password = $password;
+            $this->senha = $senha;
             $this->type = $type;
+            $this->tel = $telefone;
         }
 
         function __get($name)

@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
-<body class="text-lg min-h-screen min-w-screen">
+<body class="min-h-screen min-w-screen">
     <div class="flex justify-between flex-row w-full h-fit px-4 py-2 items-center bg-gray-200 text-xl">
         <div class="w-16 h-full">
             <img class="w-full h-full object-contain" src="../assets/PrintShop.png" alt="Logo">
