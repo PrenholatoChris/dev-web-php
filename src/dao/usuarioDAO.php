@@ -1,43 +1,51 @@
 <?php
-    require_once "../classes/conexao.php";
-    require_once "../classes/usuario.php";
+    require_once "conexao.inc.php";
+    require_once "../classes/usuario.inc.php";
 
     class UsuarioDAO
     {
-        private $conexao = new Conexao();
-        private $conn = $this->conexao->getConecxao();
 
+        private $conn;
+
+        function __construct(){
+            $conexao = new Conexao();
+            $this->conn = $conexao->getConecxao();
+        }
         function cadastrar(Usuario $usuario)
         {
-            $sql = $this->conn->prepare("INSERT INTO usuarios (nome, email, senha, type) VALUES (:nome, :email, :senha, :type)");
+            $sql = $this->conn->prepare("INSERT INTO users (nome, email, password, is_admin) VALUES (:nome, :email, :password, 0)");
             $sql->bindValue(":nome", $usuario->nome);
             $sql->bindValue(":email", $usuario->email);
-            $sql->bindValue(":senha", $usuario->senha);
-            $sql->bindValue(":type", "C");
+            $sql->bindValue(":password", $usuario->senha);
+            // $sql->bindValue(":is_admin", "C");
             $sql->execute();
         }
 
         function authenticar($email, $senha)
         {
-            $sql = $this->conn->prepare("SELECT * FROM usuarios WHERE email = :email, senha = :senha");
+            $sql = $this->conn->prepare("SELECT * FROM users WHERE email = :email AND password = :password");
             $sql->bindValue(":email", $email);
-            $sql->bindValue(":senha", $senha);
+            $sql->bindValue(":password", $senha);
             $sql->execute();
             
-            $userTemp = $sql->fetch(PDO::FETCH_OBJ);
-            $user = new Usuario();
-            return $user->setUsuario($userTemp->nome, $userTemp->email, $userTemp->senha, $userTemp->tel, $userTemp->type);
+            $user = null;
+            if($sql->rowCount() == 1){
+                $userTemp = $sql->fetch(PDO::FETCH_OBJ);
+                $user = new Usuario();
+                $user->setUsuario($userTemp->username, $userTemp->email, $userTemp->password, "27999999999", $userTemp->is_admin);
+            }
+            return $user;
         }
 
         function getAll()
         {
-            $sql = $this->conn->prepare("SELECT * FROM usuarios");
+            $sql = $this->conn->prepare("SELECT * FROM users");
             $sql->execute();
 
             $users = array();
             while( $us = $sql->fetch(PDO::FETCH_OBJ) ){
                 $user = new Usuario();
-                $user->setUsuario($us->nome, $us->email, $us->senha, $us->tel, $us->type);
+                $user->setUsuario($us->nome, $us->email, $us->senha, $us->tel, $us->is_admin);
                 $users[] = $user;
             }
 
@@ -46,27 +54,27 @@
 
         function deletar($id)
         {
-            $sql = $this->conn->prepare("DELETE FROM usuarios WHERE id = :id");
+            $sql = $this->conn->prepare("DELETE FROM users WHERE id = :id");
             $sql->bindValue(":id", $id);
             $sql->execute();
         }
 
         function getById($id){
-            $sql = $this->conn->prepare("SELECT * FROM usuarios WHERE id = :id");
+            $sql = $this->conn->prepare("SELECT * FROM users WHERE id = :id");
             $sql->bindValue(":id", $id);
             $sql->execute();
             
             $userTemp = $sql->fetch(PDO::FETCH_OBJ);
             $user = new Usuario();
-            return $user->setUsuario($userTemp->nome, $userTemp->email, $userTemp->senha, $user->tel, $userTemp->type);
+            return $user->setUsuario($userTemp->nome, $userTemp->email, $userTemp->senha, $user->tel, $userTemp->is_admin);
         }
 
         function atualizar(Usuario $usuario){
-            $sql = $this->conn->prepare("UPDATE usuarios SET nome = :nome, email = :email, senha = :senha, type = :type WHERE id = :id");
+            $sql = $this->conn->prepare("UPDATE users SET nome = :nome, email = :email, password = :password, is_admin = :is_admin WHERE id = :id");
             $sql->bindValue(":nome", $usuario->nome);
             $sql->bindValue(":email", $usuario->email);
-            $sql->bindValue(":senha", $usuario->senha);
-            $sql->bindValue(":type", $usuario->type);
+            $sql->bindValue(":password", $usuario->senha);
+            $sql->bindValue(":is_admin", $usuario->is_admin);
             $sql->bindValue(":id", $usuario->id);
             $sql->execute();
         }
