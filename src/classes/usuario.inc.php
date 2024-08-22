@@ -1,18 +1,18 @@
-<?
+<?php
     class Usuario {
-        private $id;
-        private $nome;
-        private $tel;
-        private $email;
-        private $senha;
-        private $type;
+        private int $id;
+        private string $nome;
+        private string $tel;
+        private string $email;
+        private string $senha;
+        private bool $is_admin;
 
-        function setUsuario($nome, $email, $senha, $telefone, $type)
+        function setUsuario($nome, $email, $senha, $telefone, $is_admin)
         {
             $this->nome = $nome;
             $this->email = $email;
             $this->senha = $senha;
-            $this->type = $type;
+            $this->is_admin = $is_admin;
             $this->tel = $telefone;
         }
 

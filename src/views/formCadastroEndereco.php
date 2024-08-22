@@ -1,5 +1,5 @@
 <?php
-    require_once "../classes/usuario.php";
+    require_once "../classes/usuario.inc.php";
     require_once "./includes/header.php";
 
     $usuario = $_SESSION["usuario"];

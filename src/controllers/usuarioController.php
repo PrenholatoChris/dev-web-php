@@ -1,7 +1,7 @@
 <?php 
-    // require_once "../dao/usuarioDAO.php";
+    require_once "../dao/usuarioDAO.php";
     require_once "../services/userService.php";
-    require_once "../classes/usuario.php";
+    require_once "../classes/usuario.inc.php";
 
     $opcao = (int)$_REQUEST['vOpcao'];
 
@@ -17,6 +17,7 @@
         }
 
         try{
+            unset($_SESSION["senhaError"]);
             validarSenha($senha);
         }
         catch(Exception $e){
@@ -24,6 +25,7 @@
         }
         
         try{
+            unset($_SESSION["emailError"]);
             validarEmail($email);
         }
         catch(Exception $e){
@@ -42,6 +44,7 @@
         $senha = $_REQUEST["vSenha"];
         
         try{
+            unset($_SESSION["senhaError"]);
             validarSenha($senha);
         }
         catch(Exception $e){
@@ -49,6 +52,7 @@
         }
         
         try{
+            unset($_SESSION["emailError"]);
             validarEmail($email);
         }
         catch(Exception $e){
@@ -60,8 +64,14 @@
             header("Location: ../views/formLogin.php");
         }
 
-        // $usuarioDao = new UsuarioDAO();
-        // $usuarioDao->authenticar($email, $senha);
+        $usuarioDao = new UsuarioDAO();
+        $usrLogado = $usuarioDao->authenticar($email, $senha);
+        
+        if($usrLogado != null){
+            $_SESSION["loggedUser"] = $usrLogado;
+        }else{
+            $_SESSION["senhaError"] = "Login ou senha não encontrado no sistema!";
+        }
     }
     elseif($opcao == 3) //GetAll
     {
