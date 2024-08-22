@@ -24,5 +24,5 @@
                 <!-- TODO fazer descer uma lista com o hover -->
             </li>
         </ul>
-        <button class="m-0 p-0 w-fit h-fit" type="button"><a href="#" class="items-center"><i class="bi-person"></i> Login</a></button>
+        <button class="m-0 p-0 w-fit h-fit" type="button"><a href="formLogin.php" class="items-center"><i class="bi-person"></i> Login</a></button>
     </div>
