@@ -1,95 +1,107 @@
-CREATE TABLE `produtos` (
-  `id` integer PRIMARY KEY,
-  `nome` varchar(255),
-  `estoque` integer,
-  `preco` double,
-  `imagem` blob
+DROP DATABASE grafica;
+CREATE DATABASE grafica;
+USE grafica;
+
+CREATE TABLE `products` (
+  `id` INTEGER AUTO_INCREMENT PRIMARY KEY,
+  `name` VARCHAR(255),
+  `stock` INTEGER,
+  `price` DOUBLE,
+  `image` BLOB
 );
 
-CREATE TABLE `servicos` (
-  `id` integer PRIMARY KEY,
-  `nome` varchar(255),
-  `descricao` varchar(255),
-  `imagem` blob
+CREATE TABLE `services` (
+  `id` INTEGER AUTO_INCREMENT PRIMARY KEY,
+  `name` VARCHAR(255),
+  `description` VARCHAR(255),
+  `image` BLOB
 );
 
-CREATE TABLE `tipo` (
-  `id` integer PRIMARY KEY,
-  `description` varchar(255),
-  `servicos_id` integer
+CREATE TABLE `types` (
+  `id` INTEGER AUTO_INCREMENT PRIMARY KEY,
+  `description` VARCHAR(255),
+  `service_id` INTEGER
 );
 
-CREATE TABLE `tamanho_produto` (
-  `id` integer PRIMARY KEY,
-  `nome` varchar(255),
-  `product_id` integer
+CREATE TABLE `product_sizes` (
+  `id` INTEGER AUTO_INCREMENT PRIMARY KEY,
+  `name` VARCHAR(255),
+  `product_id` INTEGER
 );
 
-CREATE TABLE `tamanho_servicos` (
-  `id` integer PRIMARY KEY,
-  `nome` varchar(255),
-  `servicos_id` integer
+CREATE TABLE `service_sizes` (
+  `id` INTEGER AUTO_INCREMENT PRIMARY KEY,
+  `name` VARCHAR(255),
+  `service_id` INTEGER
 );
 
 CREATE TABLE `orders` (
-  `id` integer PRIMARY KEY,
-  `user_id` integer,
-  `address_id` integer,
-  `date` timestamp
+  `id` INTEGER AUTO_INCREMENT PRIMARY KEY,
+  `user_id` INTEGER,
+  `address_id` INTEGER,
+  `date` TIMESTAMP
 );
 
 CREATE TABLE `users` (
-  `id` integer PRIMARY KEY,
-  `username` varchar(255),
-  `password` varchar(255),
-  `email` varchar(255),
-  `created_at` timestamp
+  `id` INTEGER AUTO_INCREMENT PRIMARY KEY,
+  `username` VARCHAR(255),
+  `password` VARCHAR(255),
+  `email` VARCHAR(255),
+  `is_admin` BOOLEAN,
+  `created_at` TIMESTAMP
 );
 
 CREATE TABLE `order_products` (
-  `id` integer PRIMARY KEY,
-  `produt_id` integer,
-  `order_id` integer,
-  `quantity` integer,
-  `tipo` varchar(255),
-  `tamanho` varchar(255),
-  `value_on_sell` double
+  `id` INTEGER AUTO_INCREMENT PRIMARY KEY,
+  `product_id` INTEGER,
+  `order_id` INTEGER,
+  `quantity` INTEGER,
+  `type` VARCHAR(255),
+  `size` VARCHAR(255),
+  `value_on_sell` DOUBLE
 );
 
-CREATE TABLE `pedido_servicos` (
-  `id` integer PRIMARY KEY,
-  `servicos_id` integer,
-  `orders_id` integer,
-  `quantity` integer,
-  `tipo` varchar(255),
-  `tamanho` varchar(255),
-  `valor_venda` double
+CREATE TABLE `order_services` (
+  `id` INTEGER AUTO_INCREMENT PRIMARY KEY,
+  `service_id` INTEGER,
+  `order_id` INTEGER,
+  `quantity` INTEGER,
+  `type` VARCHAR(255),
+  `size` VARCHAR(255),
+  `value_on_sell` DOUBLE
 );
 
-CREATE TABLE `address` (
-  `id` integer PRIMARY KEY,
-  `user_id` integer,
-  `CEP` varchar(255),
-  `Rua` varchar(255),
-  `complemento` varchar(255),
-  `bairro` varchar(255),
-  `numero` integer
+CREATE TABLE `addresses` (
+  `id` INTEGER AUTO_INCREMENT PRIMARY KEY,
+  `user_id` INTEGER,
+  `postal_code` VARCHAR(255),
+  `uf` VARCHAR(2),
+  `city` VARCHAR(255),
+  `street` VARCHAR(255),
+  `complement` VARCHAR(255),
+  `neighborhood` VARCHAR(255),
+  `number` INTEGER,
+  `phone` VARCHAR(11),
+  `receiver` VARCHAR(255)
 );
 
-ALTER TABLE `address` ADD FOREIGN KEY (`id`) REFERENCES `users` (`id`);
+ALTER TABLE `addresses` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
-ALTER TABLE `orders` ADD FOREIGN KEY (`id`) REFERENCES `users` (`id`);
+ALTER TABLE `orders` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+ALTER TABLE `orders` ADD FOREIGN KEY (`address_id`) REFERENCES `addresses` (`id`);
 
 ALTER TABLE `order_products` ADD FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`);
+ALTER TABLE `order_products` ADD FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
 
-ALTER TABLE `tipo` ADD FOREIGN KEY (`servicos_id`) REFERENCES `servicos` (`id`);
+ALTER TABLE `types` ADD FOREIGN KEY (`service_id`) REFERENCES `services` (`id`);
 
-ALTER TABLE `tamanho_produto` ADD FOREIGN KEY (`product_id`) REFERENCES `produtos` (`id`);
+ALTER TABLE `product_sizes` ADD FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
 
-ALTER TABLE `order_products` ADD FOREIGN KEY (`produt_id`) REFERENCES `produtos` (`id`);
+ALTER TABLE `order_services` ADD FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`);
+ALTER TABLE `order_services` ADD FOREIGN KEY (`service_id`) REFERENCES `services` (`id`);
 
-ALTER TABLE `pedido_servicos` ADD FOREIGN KEY (`orders_id`) REFERENCES `orders` (`id`);
+ALTER TABLE `service_sizes` ADD FOREIGN KEY (`service_id`) REFERENCES `services` (`id`);
 
-ALTER TABLE `pedido_servicos` ADD FOREIGN KEY (`servicos_id`) REFERENCES `servicos` (`id`);
-
-ALTER TABLE `tamanho_servicos` ADD FOREIGN KEY (`servicos_id`) REFERENCES `servicos` (`id`);
+INSERT INTO `users` (username, password, email, is_admin) VALUES ("admin", "$2y$10$V.4J0RupdVNqKszWaqMwNOpCn2NqjHIgKXwiV7MaxfqkAdKxASXCW", "admin@email", 1);
+INSERT INTO `users` (username, password, email, is_admin) VALUES ("chris", "$2y$10$V.4J0RupdVNqKszWaqMwNOpCn2NqjHIgKXwiV7MaxfqkAdKxASXCW", "chris@email", 0);
+INSERT INTO `users` (username, password, email, is_admin) VALUES ("daniel", "$2y$10$V.4J0RupdVNqKszWaqMwNOpCn2NqjHIgKXwiV7MaxfqkAdKxASXCW", "daniel@email", 0);

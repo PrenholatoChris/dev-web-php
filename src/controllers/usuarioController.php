@@ -1,7 +1,7 @@
 <?php 
-    // require_once "../dao/usuarioDAO.php";
+    require_once "../dao/userDAO.inc.php";
     require_once "../services/userService.php";
-    require_once "../classes/usuario.php";
+    require_once "../classes/usuario.inc.php";
 
     $opcao = (int)$_REQUEST['vOpcao'];
 
@@ -17,6 +17,7 @@
         }
 
         try{
+            unset($_SESSION["senhaError"]);
             validarSenha($senha);
         }
         catch(Exception $e){
@@ -24,14 +25,15 @@
         }
         
         try{
+            unset($_SESSION["emailError"]);
             validarEmail($email);
         }
         catch(Exception $e){
             $_SESSION["emailError"] = $e->getMessage();
         }
         
-        // $usuarioDao = new UsuarioDAO();
-        // $usuarioDao->cadastrar($nome, $email, $senha);
+        // $userDAO = new userDAO();
+        // $userDAO->cadastrar($nome, $email, $senha);
 
     }
     elseif($opcao == 2) //Authenticar
@@ -42,6 +44,7 @@
         $senha = $_REQUEST["vSenha"];
         
         try{
+            unset($_SESSION["senhaError"]);
             validarSenha($senha);
         }
         catch(Exception $e){
@@ -49,6 +52,7 @@
         }
         
         try{
+            unset($_SESSION["emailError"]);
             validarEmail($email);
         }
         catch(Exception $e){
@@ -60,19 +64,27 @@
             header("Location: ../views/formLogin.php");
         }
 
-        // $usuarioDao = new UsuarioDAO();
-        // $usuarioDao->authenticar($email, $senha);
+        $userDAO = new userDAO();
+        $usrLogado = $userDAO->authenticar($email, $senha);
+        
+        if($usrLogado != null){
+            $_SESSION["user"] = $usrLogado;
+            header("Location: ../views/formCadastroEndereco.php");
+        }else{
+            $_SESSION["senhaError"] = "Login ou senha não encontrado no sistema!";
+            header("Location: ../views/formLogin.php");
+        }
     }
     elseif($opcao == 3) //GetAll
     {
-        // $usuarioDao = new UsuarioDAO();
-        // $usuarioDao->getAll();
+        // $userDAO = new userDAO();
+        // $userDAO->getAll();
     }
     elseif($opcao == 4) //Deletar
     {
         // $id = $_REQUEST["vId"];
-        // $usuarioDao = new UsuarioDAO();
-        // $usuarioDao->deletar($id);
+        // $userDAO = new userDAO();
+        // $userDAO->deletar($id);
     }
     elseif($opcao == 5) //Atualizar
     {
@@ -84,7 +96,7 @@
         // $usuario->setUsuario($nome, $email, $senha);
         // $usuario->id = $id;
 
-        // $usuarioDao = new UsuarioDAO();
-        // $usuarioDao->atualizar($usuario);
+        // $userDAO = new userDAO();
+        // $userDAO->atualizar($usuario);
     }
 ?>
