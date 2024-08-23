@@ -1,5 +1,5 @@
 <?php 
-    require_once "../dao/usuarioDAO.php";
+    require_once "../dao/userDAO.inc.php";
     require_once "../services/userService.php";
     require_once "../classes/usuario.inc.php";
 
@@ -32,8 +32,8 @@
             $_SESSION["emailError"] = $e->getMessage();
         }
         
-        // $usuarioDao = new UsuarioDAO();
-        // $usuarioDao->cadastrar($nome, $email, $senha);
+        // $userDAO = new userDAO();
+        // $userDAO->cadastrar($nome, $email, $senha);
 
     }
     elseif($opcao == 2) //Authenticar
@@ -64,25 +64,27 @@
             header("Location: ../views/formLogin.php");
         }
 
-        $usuarioDao = new UsuarioDAO();
-        $usrLogado = $usuarioDao->authenticar($email, $senha);
+        $userDAO = new userDAO();
+        $usrLogado = $userDAO->authenticar($email, $senha);
         
         if($usrLogado != null){
-            $_SESSION["loggedUser"] = $usrLogado;
+            $_SESSION["user"] = $usrLogado;
+            header("Location: ../views/formCadastroEndereco.php");
         }else{
             $_SESSION["senhaError"] = "Login ou senha não encontrado no sistema!";
+            header("Location: ../views/formLogin.php");
         }
     }
     elseif($opcao == 3) //GetAll
     {
-        // $usuarioDao = new UsuarioDAO();
-        // $usuarioDao->getAll();
+        // $userDAO = new userDAO();
+        // $userDAO->getAll();
     }
     elseif($opcao == 4) //Deletar
     {
         // $id = $_REQUEST["vId"];
-        // $usuarioDao = new UsuarioDAO();
-        // $usuarioDao->deletar($id);
+        // $userDAO = new userDAO();
+        // $userDAO->deletar($id);
     }
     elseif($opcao == 5) //Atualizar
     {
@@ -94,7 +96,7 @@
         // $usuario->setUsuario($nome, $email, $senha);
         // $usuario->id = $id;
 
-        // $usuarioDao = new UsuarioDAO();
-        // $usuarioDao->atualizar($usuario);
+        // $userDAO = new userDAO();
+        // $userDAO->atualizar($usuario);
     }
 ?>

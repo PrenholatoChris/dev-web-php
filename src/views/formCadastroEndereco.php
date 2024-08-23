@@ -2,11 +2,11 @@
     require_once "../classes/usuario.inc.php";
     require_once "./includes/header.php";
 
-    $usuario = $_SESSION["usuario"];
+    $usuario = $_SESSION["user"];
 ?>
 
 <div class="flex justify-center w-full mb-5 mt-5">
-    <form action="../controllers/enderecoController.php" method="post" class=" w-1/3 h-fit items-center flex flex-col gap-2">
+    <form id="form" action="../controllers/enderecoController.php" method="post" class=" w-1/3 h-fit items-center flex flex-col gap-2">
         <span class="w-full">
             <p class="text-sm text-gray-500 mb-2">
                 <a href="">Sua conta</a> > <a href="">Seus Endereços</a> > <span class="text-pink-500"> Novo endereço</span>
@@ -15,18 +15,18 @@
         </span>
 
         <div class="flex flex-col w-full h-fit gap-0.5">
-            <label class="font-semibold" for="vNomeReceb">Nome</label>
-            <input value="<?= $usuario->nome ?>" class="border border-gray-400 shadow-inner shadow-gray-300 px-1 rounded-md font-light" type="text" name="vNomeReceb">
+            <label class="font-semibold" for="vNomeReceb">Nome do Recebedor</label>
+            <input  value="<?= $usuario->username ?>" class="border border-gray-400 shadow-inner shadow-gray-300 px-1 rounded-md font-light" type="text" name="vNomeReceb">
         </div>
 
         <div class="flex flex-col w-full h-fit gap-0.5">
             <label class="font-semibold" for="vTelReceb">Telefone</label>
-            <input value="<?= $usuario->tel ?>" class="border border-gray-400 shadow-inner shadow-gray-300 px-1 rounded-md font-light" type="text" name="vTelReceb" placeholder="(00) 00000-0000">
+            <input id="phone" class="border border-gray-400 shadow-inner shadow-gray-300 px-1 rounded-md font-light" type="text" name="vTelReceb" placeholder="(00) 00000-0000">
         </div>
 
         <div class="flex flex-col w-full h-fit gap-0.5">
-            <label class="font-semibold" for="vCEP">CEP</label>
-            <input class="border border-gray-400 shadow-inner shadow-gray-300 px-1 rounded-md font-light" type="text" name="vCEP" placeholder="Ex. 00000-000">
+            <label class="font-semibold" for="vCep">CEP</label>
+            <input id="cep" class="border border-gray-400 shadow-inner shadow-gray-300 px-1 rounded-md font-light" type="text" name="vCep" placeholder="Ex. 00000-000">
         </div>
 
         <div class="flex flex-col w-full h-fit gap-0.5">
@@ -45,8 +45,8 @@
         </div>
 
         <div class="flex flex-col w-full h-fit gap-0.5">
-            <label class="font-semibold" for="vUF">UF</label>
-            <input class="border border-gray-400 shadow-inner shadow-gray-300 px-1 rounded-md font-light" type="text" name="vUF">
+            <label class="font-semibold" for="vUf">UF</label>
+            <input class="border border-gray-400 shadow-inner shadow-gray-300 px-1 rounded-md font-light" type="text" name="vUf">
         </div>
 
         <div class="flex flex-col w-full h-fit gap-0.5">
@@ -59,10 +59,13 @@
             <input class="border border-gray-400 shadow-inner shadow-gray-300 px-1 rounded-md font-light" type="text" name="vNumero">
         </div>
         <input type="text" name="vOpcao" value="1" hidden>
+        <input type="text" name="vUsuario" value="<?= $usuario->id ?>" hidden>
         <span class="w-full">
             <button type="submit" class="px-2 py-1 bg-green-400 rounded-2xl mt-3 hover:bg-green-300">Salvar endereco</button>
         </span>
     </form>
 </div>
 
+<script src="../script/phone-script.js"></script>
+<script src="../script/cep-script.js"></script>
 <?php require_once "./includes/footer.php" ?>

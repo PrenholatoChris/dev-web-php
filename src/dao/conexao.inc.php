@@ -6,7 +6,7 @@
         private $senha = '';
         private $conn;
 
-        function getConecxao() {
+        function getConnection() {
             $this->conn = new PDO("mysql:host=$this->servidor_mysql;dbname=$this->nome_banco", "$this->usuario", "$this->senha"); 
             return $this->conn;
         }

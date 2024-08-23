@@ -1,19 +1,18 @@
 <?php
-    class Usuario {
+    class User {
         private int $id;
-        private string $nome;
-        private string $tel;
+        private string $username;
         private string $email;
-        private string $senha;
+        private string $password;
         private bool $is_admin;
 
-        function setUsuario($nome, $email, $senha, $telefone, $is_admin)
-        {
-            $this->nome = $nome;
+        public function setUser($username, $email, $password, $is_admin, $id = null) {
+            $this->username = $username;
             $this->email = $email;
-            $this->senha = $senha;
+            $this->password = $password;
             $this->is_admin = $is_admin;
-            $this->tel = $telefone;
+            $this->id = $id;
+            return $this;
         }
 
         function __get($name)
