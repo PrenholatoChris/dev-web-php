@@ -1,7 +1,7 @@
 <?php 
     class Address {
-        private $id;
         private $user_id;
+        private $id;
         private $phone;
         private $receiver;
         private $postal_code;
@@ -12,8 +12,7 @@
         private $number;
         private $complement;
 
-        function setAddress($user_id, $phone, $postal_code, $uf, $city, $neighborhood, $street, $number, $complement, $id=null){
-            $this->user_id = $user_id;
+        function setAddress($phone, $postal_code, $uf, $city, $neighborhood, $street, $number, $complement, $receiver) {
             $this->street = $street;
             $this->neighborhood = $neighborhood;
             $this->city = $city;
@@ -22,8 +21,7 @@
             $this->complement = $complement;
             $this->postal_code = $postal_code;
             $this->phone = $phone;
-            $this->id = $id;
-            return $this;
+            $this->receiver = $receiver;
         }
 
         function __get($name){

@@ -12,7 +12,7 @@ class AddressDAO
     }
 
     function cadastrar(Address $address) {
-        $sql = $this->conn->prepare("INSERT INTO addresses (user_id, phone, postal_code, uf, city, neighborhood, street, number, complement) VALUES (:user_id, :phone, :postal_code, :uf, :city, :neighborhood, :street, :number, :complement)");
+        $sql = $this->conn->prepare("INSERT INTO addresses (user_id, phone, postal_code, uf, city, neighborhood, street, number, complement, receiver) VALUES (:user_id, :phone, :postal_code, :uf, :city, :neighborhood, :street, :number, :complement, :receiver)");
         $sql->bindValue(":user_id",$address->user_id);
         $sql->bindValue(":phone",$address->phone);
         $sql->bindValue(":postal_code",$address->postal_code);
@@ -22,6 +22,7 @@ class AddressDAO
         $sql->bindValue(":street",$address->street);
         $sql->bindValue(":number",$address->number);
         $sql->bindValue(":complement",$address->complement);
+        $sql->bindValue(":receiver",$address->receiver);
         $sql->execute();
     }
 
@@ -44,7 +45,7 @@ class AddressDAO
 
         $addresses = array();
         while ($s = $sql->fetch(PDO::FETCH_OBJ)) {
-            array_push($addresses, $this->mapAddress($s));
+            $addresses[] = $this->mapAddress($s);
         }
 
         return $addresses;
@@ -60,10 +61,9 @@ class AddressDAO
     }
 
     function atualizar(Address $address) {
-        $sql = $this->conn->prepare("UPDATE addresses SET user_id = :user_id, phone = :phone, postal_code = :postal_code, uf = :uf, city = :city, neighborhood = :neighborhood, street = :street, number = :number, complement = :complement
+        $sql = $this->conn->prepare("UPDATE addresses SET phone = :phone, postal_code = :postal_code, uf = :uf, city = :city, neighborhood = :neighborhood, street = :street, number = :number, complement = :complement, receiver = :receiver
         where id = :id");
         $sql->bindValue(":id",$address->id);
-        $sql->bindValue(":user_id",$address->user_id);
         $sql->bindValue(":phone",$address->phone);
         $sql->bindValue(":postal_code",$address->postal_code);
         $sql->bindValue(":uf",$address->uf);
@@ -72,6 +72,7 @@ class AddressDAO
         $sql->bindValue(":street",$address->street);
         $sql->bindValue(":number",$address->number);
         $sql->bindValue(":complement",$address->complement);
+        $sql->bindValue(":receiver",$address->receiver);
         $sql->execute();
     }
 
@@ -83,7 +84,10 @@ class AddressDAO
 
     private function mapAddress($addressTemp) {
         $address = new Address();
-        return $address->setAddress($addressTemp->user_id, $addressTemp->phone, $addressTemp->postal_cod, $addressTemp->uf, $addressTemp->city, $addressTemp->neighborhood, $addressTemp->street, $addressTemp->number, $addressTemp->complement);
+        $address->user_id = $addressTemp->user_id; 
+        $address->id = $addressTemp->id;
+        $address->setAddress($addressTemp->phone, $addressTemp->postal_code, $addressTemp->uf, $addressTemp->city, $addressTemp->neighborhood, $addressTemp->street, $addressTemp->number, $addressTemp->complement, $addressTemp->receiver);
+        return $address;
     }
 }
 ?>

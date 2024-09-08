@@ -6,10 +6,10 @@
 ?>
 
 <div class="flex justify-center w-full mb-5 mt-5">
-    <form id="form" action="../controllers/enderecoController.php" method="post" class=" w-1/3 h-fit items-center flex flex-col gap-2">
+    <form id="form" action="../controllers/enderecoController.php?vOpcao=1&vUserId=<?= $usuario->id ?>" method="post" class=" w-1/3 h-fit items-center flex flex-col gap-2">
         <span class="w-full">
             <p class="text-sm text-gray-500 mb-2">
-                <a href="">Sua conta</a> > <a href="">Seus Endereços</a> > <span class="text-pink-500"> Novo endereço</span>
+                <a href="./userProfile.php">Sua conta</a> > <a href="../controllers/enderecoController.php?vOpcao=3">Seus Endereços</a> > <span class="text-pink-500"> Novo endereço</span>
             </p>
             <h1 class="text-xl font-bold">Adicionar novo endereco</h1>
         </span>
@@ -59,7 +59,6 @@
             <input class="border border-gray-400 shadow-inner shadow-gray-300 px-1 rounded-md font-light" type="text" name="vNumero">
         </div>
         <input type="text" name="vOpcao" value="1" hidden>
-        <input type="text" name="vUsuario" value="<?= $usuario->id ?>" hidden>
         <span class="w-full">
             <button type="submit" class="px-2 py-1 bg-green-400 rounded-2xl mt-3 hover:bg-green-300">Salvar endereco</button>
         </span>
