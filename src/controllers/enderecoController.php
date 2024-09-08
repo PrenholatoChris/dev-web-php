@@ -1,12 +1,15 @@
 <?php 
     require_once "../classes/address.inc.php";
+    require_once "../classes/usuario.inc.php";
     require_once "../dao/addressDAO.inc.php";
+    session_start();
 
     $opcao = (int)$_REQUEST['vOpcao'];
 
     if($opcao == 1) //Cadastrar
     {
-        $user_id = $_REQUEST["vUsuario"];
+        $user_id = $_REQUEST["vUserId"];
+        
         $street = $_REQUEST["vRua"];
         $neighborhood = $_REQUEST["vBairro"];
         $city = $_REQUEST["vCidade"];
@@ -18,44 +21,60 @@
         $phone = $_REQUEST["vTelReceb"];
 
         $endereco = new Address();
-        $endereco->setAddress($user_id, $phone, $postal_code, $uf, $city, $neighborhood, $street, $number, $complement);
+        $endereco->setAddress($phone, $postal_code, $uf, $city, $neighborhood, $street, $number, $complement, $complement, $nomeReceb);
+        $endereco->user_id = $user_id;
 
         $enderecoDao = new AddressDAO();
         $enderecoDao->cadastrar($endereco);
+
+        header("Location: ./enderecoController.php?vOpcao=3");
     }
     elseif($opcao == 2) //GetById
-    {}
+    {
+        $id = (int)$_REQUEST["vId"];
+        $enderecoDao = new AddressDAO();
+        $enderecoDao->getById($id);
+
+        $_SESSION["endereco"] = $enderecoDao->getById($id);
+
+        header("Location: ../views/formAtualizarEndereco.php");
+    }
     elseif($opcao == 3) //GetAllByUserId
     {
-        $userId = (int)$_REQUEST["vUserId"];
+        $enderecoDao = new AddressDAO();
+        $enderecos = $enderecoDao->getAllByUser($_SESSION["user"]->id);
+        $_SESSION["enderecos"] = $enderecos;
 
-        // $enderecoDao = new EnderecoDAO();
-        // $enderecos = $enderecoDao->getAllByUserId($userId);
+        header("Location: ../views/userAddresses.php");
     }
     elseif($opcao == 4) //Deletar
     {
         $id = (int)$_REQUEST["vId"];
 
-        // $enderecoDao = new EnderecoDAO();
-        // $enderecoDao->deletar($id);
+        $enderecoDao = new AddressDAO();
+        $enderecoDao->deletar($id);
+        $enderecoDao->getAllByUser($_SESSION["user"]->id);
+
+        header("Location: ./enderecoController.php?vOpcao=3");
     }
     elseif($opcao == 5) //Atualizar
     {
-        $id = (int)$_REQUEST["vId"];
         $rua = $_REQUEST["vRua"];
         $bairro = $_REQUEST["vBairro"];
         $cidade = $_REQUEST["vCidade"];
-        $estado = $_REQUEST["vEstado"];
+        $estado = $_REQUEST["vUf"];
         $numero = $_REQUEST["vNumero"];
         $complemento = $_REQUEST["vComplemento"];
         $cep = $_REQUEST["vCep"];
         $nomeReceb = $_REQUEST["vNomeReceb"];
         $telReceb = $_REQUEST["vTelReceb"];
 
-        $endereco = new Address();
-        $endereco->setAddress($rua, $bairro, $cidade, $estado, $numero, $complemento, $cep, $nomeReceb, $telReceb);
+        $endereco = $_SESSION["endereco"];
+        $endereco->setAddress($telReceb, $cep, $estado, $cidade, $bairro, $rua, $numero, $complemento, $nomeReceb);
+        
+        $enderecoDao = new AddressDAO();
+        $enderecoDao->atualizar($endereco);
 
-        // $enderecoDao = new EnderecoDAO();
-        // $enderecoDao->atualizar($endereco);
+        header("Location: ./enderecoController.php?vOpcao=3");
     }
 ?>
