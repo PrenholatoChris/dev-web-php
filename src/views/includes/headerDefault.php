@@ -17,7 +17,7 @@
             <li><a href="index.php" class="items-center"><i class="bi-house mr-1"></i>Home</a></li>
             <li><a href="#" class="items-center"><i class="bi-telephone mr-1"></i>Fale conosco</a></li>
             <li class="cursor-pointer">Servicos
-                <i class="bi-caret-down-fill text-gray-600" style="font-size: x-small;"></i>
+                <a href="produtosVenda.php"><i class="bi-caret-down-fill text-gray-600" style="font-size: x-small;">Produtos</i></a>
                 <!-- TODO fazer descer uma lista com o hover -->
             </li>
             <li><a href="#" class="items-center"><img src="../assets/cart3.png" alt="Carrinho"></a></li>

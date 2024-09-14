@@ -22,11 +22,22 @@
         <ul class="list-none flex flex-row gap-4 w-fit">
             <li><a href="index.php" class="items-center"><i class="bi-house mr-1"></i>Home</a></li>
             <li><a href="#" class="items-center"><i class="bi-telephone mr-1"></i>Fale conosco</a></li>
-            <li class="cursor-pointer">Servicos
-                <i class="bi-caret-down-fill text-gray-600" style="font-size: x-small;"></i>
-                <!-- TODO fazer descer uma lista com o hover -->
+            <li  class="cursor-pointer">
+                <a id="dropdownDefaultButton" data-dropdown-trigger="hover" data-dropdown-toggle="dropdown" href="../controllers/produtoController.php?vOpcao=3" class="items-center" type="button">Serviços</a>
+                <div id="dropdown" class="z-10 absolute hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
+                    <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownDefaultButton">
+                    <li>
+                        <a href="formProduct.php" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Cadastrar</a>
+                    </li>
+                    <li>
+                        <a href="../controllers/produtoController.php?vOpcao=6" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Consultar</a>
+                    </li>
+                    </ul>
+                </div>
+
             </li>
             <li><a href="#" class="items-center"><img src="../assets/cart3.png" alt="Carrinho"></a></li>
         </ul>
         <button class="m-0 p-0 w-fit h-fit" type="button"><a href="userProfile.php" class="items-center"> <?= $usuario->username ?> <i class="bi-person"></i></a></button>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>

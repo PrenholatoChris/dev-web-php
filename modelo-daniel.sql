@@ -5,23 +5,26 @@ USE grafica;
 CREATE TABLE `products` (
   `id` INTEGER AUTO_INCREMENT PRIMARY KEY,
   `name` VARCHAR(255),
+  `description` VARCHAR(255),
   `stock` INTEGER,
   `price` DOUBLE,
-  `image` BLOB
+  `ref` VARCHAR(11),
+  `type` VARCHAR(1)
 );
+-- , `is_product` INTEGER(1)
 
-CREATE TABLE `services` (
-  `id` INTEGER AUTO_INCREMENT PRIMARY KEY,
-  `name` VARCHAR(255),
-  `description` VARCHAR(255),
-  `image` BLOB
-);
+-- CREATE TABLE `services` (
+--   `id` INTEGER AUTO_INCREMENT PRIMARY KEY,
+--   `name` VARCHAR(255),
+--   `description` VARCHAR(255),
+--   `image` BLOB
+-- );
 
-CREATE TABLE `types` (
-  `id` INTEGER AUTO_INCREMENT PRIMARY KEY,
-  `description` VARCHAR(255),
-  `service_id` INTEGER
-);
+-- CREATE TABLE `types` (
+--   `id` INTEGER AUTO_INCREMENT PRIMARY KEY,
+--   `description` VARCHAR(255),
+--   `service_id` INTEGER
+-- );
 
 CREATE TABLE `product_sizes` (
   `id` INTEGER AUTO_INCREMENT PRIMARY KEY,
@@ -93,15 +96,20 @@ ALTER TABLE `orders` ADD FOREIGN KEY (`address_id`) REFERENCES `addresses` (`id`
 ALTER TABLE `order_products` ADD FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`);
 ALTER TABLE `order_products` ADD FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
 
-ALTER TABLE `types` ADD FOREIGN KEY (`service_id`) REFERENCES `services` (`id`);
+-- ALTER TABLE `types` ADD FOREIGN KEY (`service_id`) REFERENCES `services` (`id`);
 
 ALTER TABLE `product_sizes` ADD FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
 
 ALTER TABLE `order_services` ADD FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`);
-ALTER TABLE `order_services` ADD FOREIGN KEY (`service_id`) REFERENCES `services` (`id`);
+-- ALTER TABLE `order_services` ADD FOREIGN KEY (`service_id`) REFERENCES `services` (`id`);
 
-ALTER TABLE `service_sizes` ADD FOREIGN KEY (`service_id`) REFERENCES `services` (`id`);
+-- ALTER TABLE `service_sizes` ADD FOREIGN KEY (`service_id`) REFERENCES `services` (`id`);
 
 INSERT INTO `users` (username, password, email, is_admin) VALUES ("admin", "$2y$10$V.4J0RupdVNqKszWaqMwNOpCn2NqjHIgKXwiV7MaxfqkAdKxASXCW", "admin@email", 1);
 INSERT INTO `users` (username, password, email, is_admin) VALUES ("chris", "$2y$10$V.4J0RupdVNqKszWaqMwNOpCn2NqjHIgKXwiV7MaxfqkAdKxASXCW", "chris@email", 0);
 INSERT INTO `users` (username, password, email, is_admin) VALUES ("daniel", "$2y$10$V.4J0RupdVNqKszWaqMwNOpCn2NqjHIgKXwiV7MaxfqkAdKxASXCW", "daniel@email", 0);
+
+
+INSERT INTO `products` (name, description, stock, price, ref, type) VALUES ("daniel", "descricao do produto grande caro", 900, 99.99, "1", "p");
+INSERT INTO `products` (name, description, stock, price, ref, type) VALUES ("daniel2.0", "Produto muito caro e gigantesco", 10, 999.99, "2", "p");
+INSERT INTO `products` (name, description, stock, price, ref, type) VALUES ("Celular", "celular hightec de alta tecnologia", 2, 99.99, "3", "p");

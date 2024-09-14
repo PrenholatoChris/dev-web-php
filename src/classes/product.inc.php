@@ -3,17 +3,20 @@
     {
         private $id;
         private $name;
+        private $description;
         private $stock;
         private $price;
-        private $image;
+        private $ref;
+        private $type;
 
-        public function setProduct($name, $stock, $price, $image, $id = null) {
+        public function setProduct($name, $description, $stock, $price, $ref, $type, $id = null) {
             $this->name = $name;
+            $this->description = $description;
             $this->stock = $stock;
             $this->price = $price;
-            $this->image = $image;
+            $this->ref = $ref;
+            $this->type = $type;
             $this->id = $id;
-            return $this;
         }
 
         public function __get($name){

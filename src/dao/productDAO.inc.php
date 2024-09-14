@@ -13,11 +13,13 @@
         }
 
         function cadastrar(Product $product) {
-            $sql = $this->conn->prepare("INSERT INTO products (nome, estoque, preco, imagem) VALUES (:nome, :estoque, :preco, :imagem)");
-            $sql->bindValue(":nome", $product->nome);
-            $sql->bindValue(":estoque", $product->estoque);
-            $sql->bindValue(":preco", $product->preco);
-            $sql->bindValue(":imagem", $product->imagem);
+            $sql = $this->conn->prepare("INSERT INTO products (name, description, stock, price, ref, type) VALUES (:name, :description, :stock, :price, :ref, :type)");
+            $sql->bindValue(":name", $product->name);
+            $sql->bindValue(":description", $product->description);
+            $sql->bindValue(":stock", $product->stock);
+            $sql->bindValue(":price", $product->price);
+            $sql->bindValue(":ref", $product->ref);
+            $sql->bindValue(":type", $product->type);
             $sql->execute();
         }
 
@@ -43,11 +45,11 @@
         }
 
         function atualizar(Product $product) {
-            $sql = $this->conn->prepare("UPDATE products SET nome = :nome, estoque = :estoque, preco = :preco, imagem = :imagem WHERE id = :id");
-            $sql->bindValue(":nome", $product->nome);
-            $sql->bindValue(":estoque", $product->estoque);
-            $sql->bindValue(":preco", $product->preco);
-            $sql->bindValue(":imagem", $product->imagem);
+            $sql = $this->conn->prepare("UPDATE products SET name = :name, stock = :stock, price = :price, image = :image WHERE id = :id");
+            $sql->bindValue(":name", $product->name);
+            $sql->bindValue(":stock", $product->stock);
+            $sql->bindValue(":price", $product->price);
+            $sql->bindValue(":image", $product->image);
             $sql->bindValue(":id", $product->id);
             $sql->execute();
         }
@@ -60,7 +62,8 @@
 
         private function mapProduct($productTemp) {
             $product = new Product();
-            return $product->setProduct($productTemp->nome, $productTemp->estoque, $productTemp->preco, $productTemp->imagem, $productTemp->id);
+            $product->setProduct($productTemp->name, $productTemp->description, $productTemp->stock, $productTemp->price, $productTemp->ref, $productTemp->type, $productTemp->id);
+            return $product;
         }
     }
 ?>
