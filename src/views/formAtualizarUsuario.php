@@ -6,7 +6,7 @@
 ?>
 
 <div class="flex w-full h-[calc(100vh-3.5rem)] justify-center items-center">
-    <form action="../controllers/enderecoController.php" method="post" class="flex flex-row h-fit mt-4 justify-center bg-slate-100 rounded-lg py-4 items-center shadow-lg">
+    <form action="../controllers/usuarioController.php" method="post" class="flex flex-row h-fit mt-4 justify-center bg-slate-100 rounded-lg py-4 items-center shadow-lg">
         <div class="flex flex-col w-1/4 h-full mx-20 rounded-full justify-center items-center">
             <div class="w-40 h-40 cursor-pointer relative group">
                 <img class="relative bg-slate-400 rounded-full w-full h-full hover:after:block" src="../assets/user.png" alt="">

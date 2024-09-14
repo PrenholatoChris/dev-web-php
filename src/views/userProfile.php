@@ -28,9 +28,14 @@
                     <a type="button"><a href="../controllers/enderecoController.php?vOpcao=3">Seus enderecos</a>
                 </span>
             </p>
-            <a href="formAtualizarUsuario.php" class="text-gray-800 bg-fuchsia-300 rounded-md px-1 hover:bg-fuchsia-200 hover:text-black text-center">
-                Atualizar perfil
-            </a>
+            <div class="flex gap-4">
+                <a href="formAtualizarUsuario.php" class="text-gray-800 bg-fuchsia-300 rounded-md px-1 hover:bg-fuchsia-200 hover:text-black text-center">
+                    Atualizar perfil
+                </a>
+                <a href="../controllers/usuarioController.php?vOpcao=6" class="text-gray-800 bg-red-300 rounded-md px-1 hover:bg-fuchsia-200 hover:text-black text-center">
+                    Sair
+                </a>
+            </div>
         </div>
     </div>
 </div>

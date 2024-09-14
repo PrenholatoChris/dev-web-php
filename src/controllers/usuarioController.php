@@ -88,15 +88,27 @@
     }
     elseif($opcao == 5) //Atualizar
     {
-        // $id = $_REQUEST["vId"];
-        // $nome = $_REQUEST["vNome"];
-        // $email = $_REQUEST["vEmail"];
-        // $senha = $_REQUEST["vSenha"];
-        // $usuario = new Usuario();
-        // $usuario->setUsuario($nome, $email, $senha);
-        // $usuario->id = $id;
+        session_start();
+        $usr = $_SESSION["user"];
+        $name = $_REQUEST["vName"];
+        $email = $_REQUEST["vEmail"];
+        // $senha = $_REQUEST["vSenha"]; podemos pedir para reconfirmar a senha antes
+        $updatedUser = new User();
+        $updatedUser->setUser($name, $email, $usr->password, $usr->is_admin, $usr->id);
 
-        // $userDAO = new userDAO();
-        // $userDAO->atualizar($usuario);
+        $userDAO = new userDAO();
+        $userDAO->atualizar($updatedUser);
+        $_SESSION["user"] = $updatedUser;
+        header('Location: ../views/userProfile.php');
+    }
+    elseif($opcao == 6) //Deslogar
+    {
+        session_start();
+        unset($_SESSION["user"]);
+        header('Location: ../views/index.php');
+    }
+    elseif($opcao == 99){
+        session_start();
+        var_dump($_SESSION['user']);
     }
 ?>
