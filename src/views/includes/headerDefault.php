@@ -14,13 +14,13 @@
             <img class="w-full h-full object-contain" src="../assets/PrintShop.png" alt="Logo">
         </div>
         <ul class="list-none flex flex-row gap-4 w-fit">
-            <li><a href="#" class="items-center"><i class="bi-house mr-1"></i>Home</a></li>
-            <li><a href="#" class="items-center">Sobre nos</a></li>
+            <li><a href="index.php" class="items-center"><i class="bi-house mr-1"></i>Home</a></li>
             <li><a href="#" class="items-center"><i class="bi-telephone mr-1"></i>Fale conosco</a></li>
             <li class="cursor-pointer">Servicos
                 <i class="bi-caret-down-fill text-gray-600" style="font-size: x-small;"></i>
                 <!-- TODO fazer descer uma lista com o hover -->
             </li>
+            <li><a href="#" class="items-center"><img src="../assets/cart3.png" alt="Carrinho"></a></li>
         </ul>
         <button class="m-0 p-0 w-fit h-fit" type="button"><a href="formLogin.php" class="items-center">Login <i class="bi-person"></i> </a></button>
     </div>
