@@ -6,7 +6,7 @@
     $usuario = $_SESSION["user"];
 ?>
 
-<div class="flex justify-center w-full mb-5 mt-5">
+<div id="form" class="flex justify-center w-full mb-5 mt-5">
     <form action="../controllers/enderecoController.php?vOption=5" method="post" class=" w-1/3 h-fit items-center flex flex-col gap-2">
         <span class="w-full">
             <p class="text-sm text-gray-500 mb-2">
@@ -22,12 +22,12 @@
 
         <div class="flex flex-col w-full h-fit gap-0.5">
             <label class="font-semibold" for="vTelReceb">Telefone</label>
-            <input class="border border-gray-400 shadow-inner shadow-gray-300 px-1 rounded-md font-light" type="text" name="vTelReceb" placeholder="(00) 00000-0000" value="<?= $endereco->phone ?>">
+            <input id="phone" class="border border-gray-400 shadow-inner shadow-gray-300 px-1 rounded-md font-light" type="text" name="vTelReceb" placeholder="(00) 00000-0000" value="<?= $endereco->phone ?>">
         </div>
 
         <div class="flex flex-col w-full h-fit gap-0.5">
             <label class="font-semibold" for="vCEP">CEP</label>
-            <input class="border border-gray-400 shadow-inner shadow-gray-300 px-1 rounded-md font-light" type="text" name="vCep" placeholder="Ex. 00000-000" value="<?= $endereco->postal_code ?>">
+            <input id="cep" class="border border-gray-400 shadow-inner shadow-gray-300 px-1 rounded-md font-light" type="text" name="vCep" placeholder="Ex. 00000-000" value="<?= $endereco->postal_code ?>">
         </div>
 
         <div class="flex flex-col w-full h-fit gap-0.5">
@@ -66,4 +66,6 @@
     </form>
 </div>
 
+<script src="../script/phone-script.js"></script>
+<script src="../script/cep-script.js"></script>
 <?php require_once "./includes/footer.php" ?>
