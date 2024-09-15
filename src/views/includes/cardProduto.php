@@ -25,7 +25,7 @@ function cardProd($id,$nome,$descricao,$preco,$ref){
     </div>
     
     <div class='flex justify-center w-full h-fit mt-3 mb-2'>
-      <a href='../controllers/controlerCarrinho.php?pOpcao=1&id=$id' class='text-black text-center py-2 w-4/5 bg-orange-300 rounded-2xl text-sm hover:bg-orange-200'>
+      <a href='../controllers/carrinhoController.php?vOpcao=1&id=$id' class='text-black text-center py-2 w-4/5 bg-orange-300 rounded-2xl text-sm hover:bg-orange-200'>
         Adicionar ao Carrinho</a>
     </div>
   </div>";

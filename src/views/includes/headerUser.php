@@ -25,7 +25,7 @@
             <li  class="cursor-pointer">
                 <a id="dropdownDefaultButton" data-dropdown-trigger="hover" data-dropdown-toggle="dropdown" href="../controllers/produtoController.php?vOpcao=3" class="items-center" type="button">Serviços</a>
             </li>
-            <li><a href="#" class="items-center"><img src="../assets/cart3.png" alt="Carrinho"></a></li>
+            <li><a href="showCart.php" class="items-center"><img src="../assets/cart3.png" alt="Carrinho"></a></li>
         </ul>
         <button class="m-0 p-0 w-fit h-fit" type="button"><a href="userProfile.php" class="items-center"> <?= $usuario->username ?> <i class="bi-person"></i></a></button>
     </div>
