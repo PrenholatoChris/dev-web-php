@@ -16,9 +16,8 @@
         <ul class="list-none flex flex-row gap-4 w-fit">
             <li><a href="index.php" class="items-center"><i class="bi-house mr-1"></i>Home</a></li>
             <li><a href="#" class="items-center"><i class="bi-telephone mr-1"></i>Fale conosco</a></li>
-            <li class="cursor-pointer">Servicos
-                <a href="produtosVenda.php"><i class="bi-caret-down-fill text-gray-600" style="font-size: x-small;">Produtos</i></a>
-                <!-- TODO fazer descer uma lista com o hover -->
+            <li  class="cursor-pointer">
+                <a id="dropdownDefaultButton" data-dropdown-trigger="hover" data-dropdown-toggle="dropdown" href="../controllers/produtoController.php?vOpcao=3" class="items-center" type="button">Serviços</a>
             </li>
             <li><a href="#" class="items-center"><img src="../assets/cart3.png" alt="Carrinho"></a></li>
         </ul>
