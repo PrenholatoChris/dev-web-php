@@ -5,7 +5,7 @@
 
     $opcao = (int)$_REQUEST["vOpcao"];
 
-    if($opcao == 1){
+    if($opcao == 1 | $opcao == 6){
         #Adicionar um item ao carrinho
         $product_id = (int)$_REQUEST["id"];
         $productDao = new ProductDAO();
@@ -22,7 +22,14 @@
 
         $idx = buscaCarrinho($product->id, $carrinho);
         if($idx != -1){
-            $carrinho[$idx]->addQuantidade();
+            if($opcao == 1){
+                $carrinho[$idx]->addQuantidade();
+            }else{
+                $carrinho[$idx]->decreaseQuantidade();
+                // if($carrinho[$idx]->getQuantidade() == 0){
+                //     header("carrinhoController.php?vOpcao=2&index=$idx");
+                // }
+            }
         }else{
             $carrinho[] = $item;
         }

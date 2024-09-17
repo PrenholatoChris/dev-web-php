@@ -36,7 +36,7 @@
         // $userDAO->cadastrar($nome, $email, $senha);
 
     }
-    elseif($opcao == 2) //Authenticar
+    elseif($opcao == 2 | $opcao == 7) //Authenticar
     {
         session_start();
 
@@ -69,7 +69,12 @@
         
         if($usrLogado != null){
             $_SESSION["user"] = $usrLogado;
-            header("Location: ../views/formCadastroEndereco.php");
+            if(isset($_SESSION['carrinho'])){
+                header("Location: ../views/showCart.php");
+            }else{
+                header("Location: produtoController.php?vOpcao=3");
+            }
+
         }else{
             $_SESSION["senhaError"] = "Login ou senha não encontrado no sistema!";
             header("Location: ../views/formLogin.php");

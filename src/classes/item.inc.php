@@ -29,6 +29,13 @@ class Item{
         $this->setvalorItem();
     }
 
+    public function decreaseQuantidade(){
+        if($this->amount >= 1){
+            $this->amount--;
+            $this->setvalorItem();
+        }
+    }
+
     public function getProduto(){
         return $this->produto;
     }
