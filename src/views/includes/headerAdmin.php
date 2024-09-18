@@ -15,9 +15,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body class="min-h-screen min-w-screen">
-    <div class="flex justify-between flex-row w-full h-fit px-4 py-2 items-center bg-gray-200 text-xl">
+    <div class="flex justify-between flex-row w-full h-fit px-4 py-2 items-center bg-gray-200 dark:bg-gray-500 text-xl">
         <div class="w-16 h-full">
-            <img class="w-full h-full object-contain" src="../assets/PrintShop.png" alt="Logo">
+            <img class="w-full object-cover" src="../assets/PrintShop.png" alt="Logo">
         </div>
         <ul class="list-none flex flex-row gap-4 w-fit">
             <li><a href="index.php" class="items-center"><i class="bi-house mr-1"></i>Home</a></li>

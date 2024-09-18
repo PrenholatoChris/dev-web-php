@@ -1,7 +1,7 @@
 <?php require_once "./includes/header.php" ?>
 
-<main class="w-full flex justify-center content-center bg-slate-100">
-  <div class="w-[70vw] h-fit rounded-3xl bg-slate-100 ">
+<main class="w-full h-[calc(100vh-3.5rem)] dark:bg-gray-800 dark:text-blue-100 flex justify-center content-center bg-slate-100">
+  <div class="w-[70vw] h-fit rounded-3xl ">
 
     <h1 class="text-center text-4xl font-bold">Bem-vindos a nossa Loja Virtual!</h1>
 

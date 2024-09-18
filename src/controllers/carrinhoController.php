@@ -70,8 +70,9 @@
         $total = $_REQUEST["total"];
         $_SESSION['total'] = $total;
 
-        if(isset($_SESSION["clienteLogado"])){
-            header('Location: ../views/dadosCompra.php');
+        if(isset($_SESSION["user"])){
+            #seleciona endereco de entrega
+            header('Location: enderecoController.php?vOpcao=6');
         }else{
             header('Location: ../views/formLogin.php');
         }

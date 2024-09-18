@@ -14,13 +14,14 @@
 
         private function mapUser($userTemp) {
             $user = new User();
-            return $user->setUser($userTemp->username, $userTemp->email, $userTemp->password, $userTemp->is_admin, $userTemp->id);
+            return $user->setUser($userTemp->username, $userTemp->cpf ,$userTemp->email, $userTemp->password, $userTemp->is_admin, $userTemp->id);
         }
 
         function cadastrar(User $usuario)
         {
-            $sql = $this->conn->prepare("INSERT INTO users (username, email, password, is_admin, phone) VALUES (:username, :email, :password, 0, :phone)");
+            $sql = $this->conn->prepare("INSERT INTO users (username, cpf, email, password, is_admin, phone) VALUES (:username, :cpf, :email, :password, 0, :phone)");
             $sql->bindValue(":username", $usuario->username);
+            $sql->bindValue(":cpf", $usuario->cpf);
             $sql->bindValue(":email", $usuario->email);
             $sql->bindValue(":password", password_hash($usuario->senha, PASSWORD_DEFAULT));
             $sql->bindValue(":phone", $usuario->phone);

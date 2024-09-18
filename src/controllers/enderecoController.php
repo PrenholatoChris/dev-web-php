@@ -29,23 +29,31 @@
 
         header("Location: ./enderecoController.php?vOpcao=3");
     }
-    elseif($opcao == 2) //GetById
+    elseif($opcao == 2 | $opcao == 7) //GetById
     {
         $id = (int)$_REQUEST["vId"];
         $enderecoDao = new AddressDAO();
         $enderecoDao->getById($id);
 
         $_SESSION["endereco"] = $enderecoDao->getById($id);
-
-        header("Location: ../views/formAtualizarEndereco.php");
+        if($opcao == 2){
+            header("Location: ../views/formAtualizarEndereco.php");
+        }else{
+            header('Location: vendaController.php?vOpcao=1');
+        }
     }
-    elseif($opcao == 3) //GetAllByUserId
+    elseif($opcao == 3 | $opcao == 6) //GetAllByUserId
     {
         $enderecoDao = new AddressDAO();
         $enderecos = $enderecoDao->getAllByUser($_SESSION["user"]->id);
         $_SESSION["enderecos"] = $enderecos;
 
-        header("Location: ../views/userAddresses.php");
+        if($opcao == 3){
+            header("Location: ../views/userAddresses.php");
+        }else{
+            #Escolher endereco para a compra
+            header('Location: ../views/formSelectAddress.php');
+        }
     }
     elseif($opcao == 4) //Deletar
     {

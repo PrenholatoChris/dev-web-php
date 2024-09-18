@@ -62,15 +62,7 @@
                         <a class="px-4 py-2 text-gray-800 bg-fuchsia-300 rounded-md hover:bg-fuchsia-200 hover:text-black text-center"" role="button" href="../controllers/carrinhoController.php?vOpcao=3"><b>Esvaziar carrinho</b></a>
                   </div>
                   <div class="col">
-                        <?php 
-                              if(isset($_SESSION['user'])){
-                                    echo "<a class='btn btn-success' role='button' href='" . "./dadosCompra.php" . "'><b>Finalizar compra</b></a>";           
-                              }else{
-                                    echo "<a class='btn btn-success' role='button' href='" . "./formLogin.php" . "'><b>Finalizar compra</b></a>";           
-                              }
-                        ?>
-
-                        <a class='px-4 py-2 text-gray-800 bg-green-300 rounded-md hover:bg-green-200 hover:text-black text-center"' role='button' href='../controllers/carrinhoController.php?vOpcao=5&total=<?=$soma?>'><b>Finalizar compra</b></a>
+                        <a class='px-4 py-2 text-gray-800 bg-green-300 rounded-md hover:bg-green-200 hover:text-black text-center"' role='button' href='../controllers/carrinhoController.php?vOpcao=5&total=<?=$soma?>'><b>Seguir para a compra</b></a>
                   </div>
             </div>
 </div>
