@@ -1,5 +1,6 @@
 <?php 
     require_once "../classes/product.inc.php";
+    require_once "../services/imageService.php";
     require_once "../dao/productDAO.inc.php";
     session_start();
 
@@ -70,29 +71,5 @@
         $enderecoDao->atualizar($product);
 
         header("Location: ./enderecoController.php?vOpcao=3");
-    }
-
-
-    function uploadImage($ref){
-        $image = $_FILES["vImage"];
-        $nome = $ref;
-
-        if($image != null){
-            $temp_name = $image["tmp_name"];
-            // $type = $_FILES['pImagem']['type'];
-            copy($temp_name, "../assets/products/$nome.jpg");
-        }else{
-            echo "Voce nao realizou o upload de forma satisfatoria.";
-        }
-    }
-
-    function deleteImage($ref){
-            $arquivo = "../views/imagens/produtos/$ref.jpg";
-            
-            if(file_exists( $arquivo )){ // verifica se o arquivo existe
-                if (!unlink($arquivo)){ //aqui que se remove o arquivo retornando true, senão mostra mensagem
-                    echo "Não foi possível deletar o arquivo!";
-                }
-            }
     }
 ?>

@@ -6,12 +6,12 @@ function cardProd($id,$nome,$descricao,$preco,$ref){
   >
     <div class='border'>
         <img
-          class='object-cover w-60 h-44'
-          src='../assets/products/$ref.jpg'
+          class='object-contain w-60 h-44'
+          src='../assets/images/$ref.jpg'
           alt='Foto do produto $id'
         />
     </div>
-    <div class='cursor-default'>
+    <div class='cursor-default pl-2 '>
         <p class='text-black font-semibold text-lg mb-1'>$nome</p>
         <p class='text-black mb-0.5'>$descricao</p>
         <span class='text-black w-full flex flex-row'>
