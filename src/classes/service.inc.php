@@ -1,16 +1,22 @@
 <?php
+    require_once "sizes.inc.php";
+
     class Service
     {
         private $id;
         private $name;
+        private $reference;
         private $description;
-        private $image;
+        private $sizes;
+        private $price;
 
-        public function setService($name, $description, $image, $id = null) {
+        public function setService($name, $description, $reference, $price, $sizes = null, $id = null) {
             $this->name = $name;
             $this->description = $description;
-            $this->image = $image;
             $this->id = $id;
+            $this->reference = $reference;
+            $this->sizes = $sizes;
+            $this->price = $price;
             return $this;
         }
 

@@ -24,7 +24,7 @@
         }
 
         function getAll() {
-            $sql = $this->conn->prepare("SELECT * FROM products");
+            $sql = $this->conn->prepare("SELECT * FROM products where type = 'p'");
             $sql->execute();
 
             $products = array();
