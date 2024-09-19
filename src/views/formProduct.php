@@ -27,11 +27,7 @@
     <label for="vDescription" class="form-label">Descrição do produto: </label>
     <textarea class="border rounded w-max h-fit" name="vDescription" rows="6" style="resize: none"></textarea>    
   </div>
-  <div class="columns-md">
-    <label for="vType" class="form-label">Tipo de produto:</label>
-    <input type="radio" id="p" name="vType" value="p"><label for="p">Produto</label>
-    <input type="radio" id="s" name="vType" value="s"><label for="s">Servico</label>
-  </div>
+  <input type="hidden" name="vType" value="p">
   <div class="">
     <button type="submit" class="px-2 py-1 bg-green-400 rounded w-max-2xl mt-3 hover:bg-green-300">Incluir</button>
     <button type="reset" class="px-2 py-1 bg-red-400 rounded w-max-2xl mt-3 hover:bg-red-300">Cancelar</button>

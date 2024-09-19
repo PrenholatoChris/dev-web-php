@@ -70,6 +70,7 @@
       <button type="reset" class="px-2 py-1 bg-red-400 rounded w-max-2xl mt-3 hover:bg-red-300">Cancelar</button>
     </div>
     <input type="hidden" name="vOpcao" value="1">
+    <input type="hidden" name="vType" value="s">
   </form>
 </div>
 

@@ -13,14 +13,22 @@ class SaleDAO{
         $this->con = $c->getConnection();
     }
 
+    private function mapSales($rows){
+        $arr = array();
+        foreach($rows as $row){
+            $arr[] = new Sale($row->cpf, $row->address_id, $row->totalValue, $row->date, $row->id);
+        }
+        return $arr;
+    }
+
     public function insertSale($venda, $carrinho){
         $sql = $this->con->prepare("insert into sales 
-        (cpf, saleDate, totalValue, address_id)
+        (cpf, date, totalValue, address_id)
         values (:cpf, :data, :val, :address)");
 
         $sql->bindValue(':cpf', $venda->cpf);
-        $sql->bindValue(':data', converterDataToMysql($venda->data));
-        $sql->bindValue(':val', $venda->valorTotal);
+        $sql->bindValue(':data', converterDataToMysql($venda->date));
+        $sql->bindValue(':val', $venda->totalValue);
         $sql->bindValue(':address', $venda->address_id);
         $sql->execute();
 
@@ -28,6 +36,19 @@ class SaleDAO{
         $this->insertItems($id, $carrinho);
     }
     
+    public function getAllBetweenDates($datai,$dataf){
+        $sql = $this->con->prepare("SELECT s.* FROM sales s
+        WHERE (:datai is null or 
+               s.date >= :datai)
+          and (:dataf is null or 
+               s.date <= :dataf)");
+
+        $sql->bindValue(':datai', $datai);
+        $sql->bindValue(':dataf', $dataf);
+        $sql->execute();
+        $rows = $sql->fetchAll(PDO::FETCH_OBJ);
+        return $this->mapSales($rows);
+    }
 
     private function insertItems($idVenda,$carrinho){
         foreach($carrinho as $item){

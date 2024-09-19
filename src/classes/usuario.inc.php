@@ -1,6 +1,6 @@
 <?php
     class User {
-        private int $id;
+        private $id;
         private string $cpf;
         private string $username;
         private string $email;
@@ -14,7 +14,6 @@
             $this->password = $password;
             $this->is_admin = $is_admin;
             $this->id = $id;
-            return $this;
         }
 
         function __get($name)

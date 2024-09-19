@@ -14,6 +14,7 @@
 
         if($senha != $confirmarSenha){
             $_SESSION["senhaError"] = "As senhas precisam ser iguais";
+
         }
 
         try{
@@ -32,8 +33,11 @@
             $_SESSION["emailError"] = $e->getMessage();
         }
         
-        // $userDAO = new userDAO();
-        // $userDAO->cadastrar($nome, $email, $senha);
+        $usuario = new User();
+        $usuario->setUser($nome, 99999999999, $email, $senha, 0);
+        $userDao = new userDAO();
+        $userDao->cadastrar($usuario);
+        header("Location: ../views/formLogin.php");
 
     }
     elseif($opcao == 2 | $opcao == 7) //Authenticar
@@ -63,9 +67,11 @@
         {
             header("Location: ../views/formLogin.php");
         }
-
+        var_dump($email);
+        var_dump($senha);
         $userDAO = new userDAO();
         $usrLogado = $userDAO->authenticar($email, $senha);
+
         
         if($usrLogado != null){
             $_SESSION["user"] = $usrLogado;
@@ -99,7 +105,7 @@
         $email = $_REQUEST["vEmail"];
         // $senha = $_REQUEST["vSenha"]; podemos pedir para reconfirmar a senha antes
         $updatedUser = new User();
-        $updatedUser->setUser($name, $email, $usr->password, $usr->is_admin, $usr->id);
+        $updatedUser->setUser($name, 99999999999,$email, $usr->password, $usr->is_admin, $usr->id);
 
         $userDAO = new userDAO();
         $userDAO->atualizar($updatedUser);

@@ -4,14 +4,17 @@ class Sale{
     private $id;
     private $cpf;
     private $address_id;
-    private $totalAmount;
+    private $totalValue;
     private $date;
 
-    function __construct($cpf, $address_id, $valor){
+    function __construct($cpf, $address_id, $totalValue, $date=null, $id=null){
         $this->cpf = $cpf;
         $this->address_id = $address_id;
-        $this->valorTotal = $valor;
-        $this->data = time();
+        $this->totalValue = $totalValue;
+        $this->date = $date;
+        if($date == null){
+            $this->date = time();
+        }
     }
 
     function __set($atrib, $value){

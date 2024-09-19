@@ -15,6 +15,11 @@
                 <p class="text-lg text-center mt-4 text-gray-600"><?=$servico->description?></p>
             </div>
 
+            <div>
+                <h1 class="font-bold text-2xl text-center text-gray-800">Preço Base</h1>
+                <p class="text-lg text-center mt-4 text-green-600">R$ <?=$servico->price?></p>
+            </div>
+
             <!-- Opções de Serviço -->
             <div class="mt-6">
                 <h2 class="font-semibold text-gray-700 mb-3">Escolha o tamanho do Serviço:</h2>
@@ -24,7 +29,7 @@
                         foreach($sizes as $size){
                             echo "<label class='inline-flex items-center'>
                                     <input type='radio' name='size_id' value='$size->id' id='$size->id' class='form-radio text-blue-600'>
-                                    <span class='ml-2 text-gray-800'>$size->name</span>
+                                    <span class='ml-2 text-gray-800'>$size->name + </span><span class='ml-2 text-green-600'>R$ $size->price</span>
                                 </label>
                             ";
                         }

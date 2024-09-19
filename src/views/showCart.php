@@ -3,7 +3,7 @@ require_once '../classes/item.inc.php';
 require_once 'includes/header.php';
 ?>
 
-<h1 class="text-center font-bold text-xl">Carrinho de compra</h1>
+<h1 class="text-center font-bold text-xl mt-5">Carrinho de compra</h1>
 <?php
 $carrinho = [];
 if (isset($_SESSION["carrinho"])) {
@@ -11,7 +11,7 @@ if (isset($_SESSION["carrinho"])) {
 }
 
 ?>
-<div class="w-full flex justify-center">
+<div class="w-full flex justify-center pb-40 mt-5">
       <div class="container w-[80vw] flex-col flex content-center">
             <table class="table table-ligth table-striped border">
                   <thead class="table-danger border">
@@ -50,9 +50,9 @@ if (isset($_SESSION["carrinho"])) {
                                           }
                                           else{
                                     ?>
-                                          <a href="../controllers/carrinhoController.php?vOpcao=6&id=<?= $item->getProduto()->id ?>&size_id=<?=$item->getSizeId()?>" class='text-gray-800 bg-red-300 rounded-md px-1 hover:bg-fuchsia-200 hover:text-black text-center'>-</a>
+                                          <a href="../controllers/carrinhoController.php?vOpcao=8&id=<?= $item->getProduto()->id ?>&size_id=<?=$item->getSizeId()?>" class='text-gray-800 bg-red-300 rounded-md px-1 hover:bg-fuchsia-200 hover:text-black text-center'>-</a>
                                           <span><?= $item->getQuantidade() ?></span>
-                                          <a href="../controllers/carrinhoController.php?vOpcao=1&id=<?= $item->getProduto()->id ?>&size_id=<?=$item->getSizeId()?>" class='text-gray-800 bg-green-300 rounded-md px-1 hover:bg-green-200 hover:text-black text-center self-center'>+</a>
+                                          <a href="../controllers/carrinhoController.php?vOpcao=7&id=<?= $item->getProduto()->id ?>&size_id=<?=$item->getSizeId()?>" class='text-gray-800 bg-green-300 rounded-md px-1 hover:bg-green-200 hover:text-black text-center self-center'>+</a>
                                     
                                     <?php
                                           }

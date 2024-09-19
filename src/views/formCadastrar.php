@@ -1,8 +1,9 @@
 <?php require_once "./includes/header.php" ?>
 
 <div class="w-full h-[calc(100vh-4rem)] flex flex-col justify-center items-center">
-    <form action="" method="post" class="flex flex-col items-center rounded-lg bg-green-100 shadow-xl shadow-gray-300 max-h-fit w-1/3 px-2 py-3 gap-2">
+    <form action="../controllers/usuarioController.php" method="post" class="flex flex-col items-center rounded-lg bg-green-100 shadow-xl shadow-gray-300 max-h-fit w-1/3 px-2 py-3 gap-2">
         <h1 class="text-center font-bold text-2xl">Cadastrar</h1>
+        <input type="hidden" name="vOpcao" value="1">
         <hr class="w-9/12 h-px shadow-sm">
         <div class="w-full flex flex-col mb-1">
             <label for="vNome">Nome</label>

@@ -15,7 +15,7 @@ CREATE TABLE `products` (
 CREATE TABLE `service_prop` (
   `id` INTEGER AUTO_INCREMENT PRIMARY KEY,
   `name` VARCHAR(255),
-  `price` VARCHAR(255),
+  `price` DOUBLE,
   `service_id` INTEGER
 );
 
@@ -56,7 +56,7 @@ CREATE TABLE `sales` (
   `id` INTEGER AUTO_INCREMENT PRIMARY KEY,
   `address_id` INTEGER NOT NULL,
   `cpf` varchar(15) NOT NULL,
-  `saleDate` date NOT NULL,
+  `date` date NOT NULL,
   `totalValue` float NOT NULL
 );
 
@@ -68,8 +68,9 @@ ALTER TABLE `items`
 ALTER TABLE `sales` ADD FOREIGN KEY (`address_id`) REFERENCES `addresses` (`id`);
 
 INSERT INTO `users` (username, cpf, password, email, is_admin) VALUES ("admin", "99999999999","$2y$10$V.4J0RupdVNqKszWaqMwNOpCn2NqjHIgKXwiV7MaxfqkAdKxASXCW", "admin@email", 1);
-INSERT INTO `users` (username, cpf, password, email, is_admin) VALUES ("chris", "99999999900", "$2y$10$V.4J0RupdVNqKszWaqMwNOpCn2NqjHIgKXwiV7MaxfqkAdKxASXCW", "chris@email", 0);
-INSERT INTO `users` (username, cpf, password, email, is_admin) VALUES ("daniel", "99999999901", "$2y$10$V.4J0RupdVNqKszWaqMwNOpCn2NqjHIgKXwiV7MaxfqkAdKxASXCW", "daniel@email", 0);
+INSERT INTO `users` (username, cpf, password, email, is_admin) VALUES ("chris", "99999999900", "$2y$10$yQcbF0A/d2vxKgC5t9VDRuDSbvrt8HumGXrWduyOJy0w2wJCsSht.", "chris@email", 0);
+INSERT INTO `users` (username, cpf, password, email, is_admin) VALUES ("daniel", "99999999901", "$2y$10$yUI2tyLB3Pger1K/mBYXZOLxy2GOB4GVtGoqtD7jfJIoxkBF6lY5y", "daniel@email", 0);
+INSERT INTO `users` (username, cpf, password, email, is_admin) VALUES ("tales", "99999959901", "$2y$10$fdUSxO3b8Uwz5sdqQSwgUOpERxrBrs3lnFe3LnCwnsvSdQQeQvrbC", "tales@email", 0);
 
 INSERT INTO `addresses` (user_id, postal_code, uf, city, street, complement,neighborhood, number, phone, receiver) VALUES ("1", "29500000", "ES", "Alegre", "Rua Quinze de Agosto", "Casa", "Centro", "181", "27981711010", "Casa de alegre");
 INSERT INTO `addresses` (user_id, postal_code, uf, city, street, complement,neighborhood, number, phone, receiver) VALUES ("2", "29500000", "ES", "Alegre", "Rua Quinze de Agosto", "Casa", "Centro", "171", "27981611010", "Casa de alegre");

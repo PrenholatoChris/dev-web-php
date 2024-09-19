@@ -25,14 +25,24 @@
         
         unset($_SESSION["carrinho"]);
         header("Location: ../views/boleto/meuBoleto.php");
-    }elseif($opcao == 2){
+    }elseif($opcao == 2){//listar vendas
         session_start();
-        unset($_SESSION['user']);
-        header("Location: ../views/index.php");
-    }elseif($opcao == 3){
-        session_start();
-        unset($_SESSION['user']);
-        header("Location: ../views/index.php");
+
+        $datai = null;
+        if(isset($_REQUEST['datai'])){
+            $datai = $_REQUEST["datai"];
+        }
+
+        $dataf = null;
+        if(isset($_REQUEST['dataf'])){
+            $dataf = $_REQUEST["dataf"];
+        }
+        $saleDao = new SaleDAO();
+        $sales = $saleDao->getAllBetweenDates($datai,$dataf);
+        $_SESSION["sales"] = $sales;
+        // var_dump($sales);
+        header("Location: ../views/showSales.php");
+
     }
     
     

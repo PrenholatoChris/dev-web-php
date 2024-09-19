@@ -14,17 +14,16 @@
 
         private function mapUser($userTemp) {
             $user = new User();
-            return $user->setUser($userTemp->username, $userTemp->cpf ,$userTemp->email, $userTemp->password, $userTemp->is_admin, $userTemp->id);
+            $user->setUser($userTemp->username, $userTemp->cpf ,$userTemp->email, $userTemp->password, $userTemp->is_admin, $userTemp->id);
+            return $user;
         }
 
-        function cadastrar(User $usuario)
-        {
-            $sql = $this->conn->prepare("INSERT INTO users (username, cpf, email, password, is_admin, phone) VALUES (:username, :cpf, :email, :password, 0, :phone)");
+        function cadastrar($usuario){
+            $sql = $this->conn->prepare("INSERT INTO users (username, cpf, email, password, is_admin) VALUES (:username, :cpf, :email, :password, 0)");
             $sql->bindValue(":username", $usuario->username);
             $sql->bindValue(":cpf", $usuario->cpf);
             $sql->bindValue(":email", $usuario->email);
-            $sql->bindValue(":password", password_hash($usuario->senha, PASSWORD_DEFAULT));
-            $sql->bindValue(":phone", $usuario->phone);
+            $sql->bindValue(":password", password_hash($usuario->password, PASSWORD_DEFAULT));
             $sql->execute();
         }
 
@@ -37,7 +36,7 @@
             if ($sql->rowCount() == 1) {
                 $userTemp = $sql->fetch(PDO::FETCH_OBJ);
                 if (password_verify($password, $userTemp->password)) {
-                    return $this->mapUser($userTemp);
+                    return $this->mapUser($userTemp); 
                 }
             }
             return null;

@@ -15,7 +15,7 @@ $sacado = new Agente($cliente->username, $cliente->cpf, $endereco->street, $ende
 $cedente = new Agente('Grafica rapida LTDA', '99.999.999/0001-99', 'Rua Centro', '29500-000', 'Alegre', 'ES');
 
 $boleto = new BancoDoBrasil(array(
-    'dataVencimento' => new DateTime('+7 days'),
+    'dataVencimento' => new DateTime('+3 days'),
     'valor' => $_SESSION["total"],
     'sequencial' => 1234567,
     'sacado' => $sacado,

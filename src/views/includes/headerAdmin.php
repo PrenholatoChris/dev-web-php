@@ -51,7 +51,8 @@
                     </ul>
                 </div>
             </li>
-            <li><a href="showCart.php" class="items-center"><img src="../assets/cart3.png" alt="Carrinho"></a></li>
+            <li><a href="../controllers/vendaController.php?vOpcao=2" class="items-center"><i class="bi-receipt bi"></i> Vendas</a></li>
+            <li><a href="showCart.php" class="items-center"><i class="bi bi-cart"></i> Carrinho</a></li>
         </ul>
         <button class="m-0 p-0 w-fit h-fit" type="button"><a href="userProfile.php" class="items-center"> <?= $usuario->username ?> <i class="bi-person"></i></a></button>
     </div>
