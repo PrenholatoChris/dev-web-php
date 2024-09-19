@@ -5,7 +5,7 @@ class Item{
     private int $amount;
     private float $totalValue;
     private Product $produto;
-    private int $sizeId;
+    private $sizeId;
 
     function __construct($produto){
         $this->amount = 1;

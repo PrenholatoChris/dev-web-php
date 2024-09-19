@@ -78,18 +78,8 @@
         #adicionar um servico ao carrinho
 
         $product_id = (int)$_REQUEST["id"];
-        $size_id = (int)$_REQUEST["size_id"];
-    
-        $serviceDao = new serviceDAO();
-        $service = $serviceDao->getFullById($product_id);
-        updateServiceBySizes($size_id, $service);
-
-        $prd = new Product();
-        $prd->setProduct($service->name, $service->description, 0, $service->price, $service->reference, "s", $service->id);
-
-        $item = new Item($prd);
-        $item->setSizeId($size_id); 
-
+        $size_id = $_REQUEST["size_id"];
+        
         session_start();
         if(isset($_SESSION["carrinho"])){
             $carrinho = $_SESSION["carrinho"];
@@ -97,7 +87,50 @@
             $carrinho = array();
         }
 
-        $idx = buscaServicoCarrinho($service->id, $carrinho, $size_id);
+        $idx = buscaServicoCarrinho($product_id, $carrinho, $size_id);
+        if($idx != -1){
+            if($opcao == 7){
+                $carrinho[$idx]->addQuantidade();
+            }else{
+                $carrinho[$idx]->decreaseQuantidade();
+            }
+        }else{
+            $carrinho[] = $item;
+        }
+
+        $_SESSION["carrinho"] = $carrinho;
+        header("Location: ../views/showCart.php");
+    }
+    elseif ($opcao == 9){
+        #adicionar um servico ao carrinho
+
+        $product_id = (int)$_REQUEST["id"];
+        $size_id = $_REQUEST["propsIds"];
+        $size_id = json_decode($size_id, true);
+        
+        $serviceDao = new serviceDAO();
+        $service = $serviceDao->getFullById($product_id);
+
+        $sizeIdValidator = '';
+        foreach ($size_id as $group) {
+            foreach ($group as $group_id) {
+                $sizeIdValidator = $sizeIdValidator . updateServiceBySizes((int) $group_id, $service);
+            }
+        }
+        $prd = new Product();
+        $prd->setProduct($service->name, $service->description, 0, $service->price, $service->reference, "s", $service->id);
+        
+        $item = new Item($prd);
+        $item->setSizeId((int)$sizeIdValidator); 
+        
+        session_start();
+        if(isset($_SESSION["carrinho"])){
+            $carrinho = $_SESSION["carrinho"];
+        }else{
+            $carrinho = array();
+        }
+
+        $idx = buscaServicoCarrinho($service->id, $carrinho, $sizeIdValidator);
         if($idx != -1){
             if($opcao == 7){
                 $carrinho[$idx]->addQuantidade();
@@ -125,6 +158,8 @@
 
     function buscaServicoCarrinho($servicoId, $vetor, $size_id){
         $index = -1;
+        var_dump($vetor);
+        var_dump($size_id);
         for($i=0; $i<count($vetor); $i++){
             if ($servicoId == $vetor[$i]->getProduto()->id && $vetor[$i]->getSizeId() == $size_id ) {
                 $index = $i;
@@ -135,11 +170,16 @@
     }
 
     function updateServiceBySizes($size_id, $service){
-        foreach($service->sizes as $size){
-            if($size->id == $size_id){
-                $service->name = $service->name . ' - ' . $size->name;
-                $service->price = $service->price + $size->price;
+        $idValidator = '';
+        foreach($service->sizes as $sizegroup){
+            foreach($sizegroup as $size){
+                if($size->id == $size_id){
+                    $service->name = $service->name . ' - ' . $size->name;
+                    $service->price = $service->price + $size->price;
+                    $idValidator = $idValidator . (string)$size->id;
+                }
             }
         }
+        return $idValidator;
     }
 ?>
