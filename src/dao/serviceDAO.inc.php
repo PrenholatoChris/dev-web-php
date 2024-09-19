@@ -57,12 +57,13 @@ class serviceDAO
     }
 
     function cadastrar(Service $service) {
-        $sql = $this->conn->prepare("INSERT INTO products (name, description, ref, price, type) VALUES (:name, :description, :ref, :price, :type)");
+        $sql = $this->conn->prepare("INSERT INTO products (name, description, ref, price, type, category) VALUES (:name, :description, :ref, :price, :type, :category)");
         $sql->bindValue(":name", $service->name);
         $sql->bindValue(":description", $service->description);
         $sql->bindValue(":ref", $service->reference);
         $sql->bindValue(":price", $service->price);
         $sql->bindValue(":type", "s");
+        $sql->bindValue(":category", "$service->category");
         $sql->execute();
 
         $id = (int)$this->getMaxId();
@@ -115,11 +116,12 @@ class serviceDAO
     }
 
     function atualizar(Service $service) {
-        $sql = $this->conn->prepare("UPDATE products SET name = :name, description = :description, price = :price WHERE id = :id");
+        $sql = $this->conn->prepare("UPDATE products SET name = :name, description = :description, price = :price , category = :category WHERE id = :id");
         $sql->bindValue(":name", $service->name);
         $sql->bindValue(":description", $service->description);
         $sql->bindValue(":price", $service->price);
         $sql->bindValue(":id", $service->id);
+        $sql->bindValue(":category", $service->category);
         $sql->execute();
         $this->atualizarSizes($service->id , $service->sizes);
     }

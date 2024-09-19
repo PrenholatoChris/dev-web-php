@@ -41,7 +41,7 @@
         }
         else{
             $service = new service();
-            $service->setService($vName, $vDescription, $vRef, $vPrice, $list);
+            $service->setService($vName, $vDescription, $vRef, $vPrice, $vCategory, $list);
 
             if(isset($_SESSION["servico"])){
                 $service->id = $_SESSION["servico"]->id;
