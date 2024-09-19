@@ -7,7 +7,7 @@
     <div class="bg-white w-[90vw] sm:w-[60vw] lg:w-[40vw] p-6 shadow-2xl shadow-black border rounded-3xl border-gray-300">
         <form action="../controllers/carrinhoController.php" class="flex flex-col justify-between h-full" method="post">
             <input type="hidden" name="vOpcao" value="7">
-            <input type="hidden" name="id" value="5">
+            <input type="hidden" name="id" value="<?=$servico->id?>">
 
             <!-- Título e Descrição -->
             <div>
