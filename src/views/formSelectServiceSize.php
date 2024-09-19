@@ -29,10 +29,6 @@
                             ";
                         }
                     ?>
-                    <label class="inline-flex items-center">
-                        <input type="radio" name="size_id" value="5" id="5" class="form-radio text-blue-600">
-                        <span class="ml-2 text-gray-800">A3</span>
-                    </label>
                 </div>
             </div>
 
