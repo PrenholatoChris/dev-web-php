@@ -21,6 +21,11 @@
       <label for="vRef" class="block text-sm font-medium text-gray-700">Referência</label>
       <input value="<?= $servico->reference ?>" type="text" class="border rounded w-full p-2 mt-1 focus:ring focus:ring-blue-300" name="vRef" required>
     </div>
+
+    <div class="w-full">
+      <label for="vRef" class="block text-sm font-medium text-gray-700">Category</label>
+      <input value="<?= $servico->category ?>" type="text" class="border rounded w-full p-2 mt-1 focus:ring focus:ring-blue-300" name="vCategory" required>
+    </div>
     
     <div class="w-full">
       <label for="vPrice" class="block text-sm font-medium text-gray-700">Preço base do serviço</label>

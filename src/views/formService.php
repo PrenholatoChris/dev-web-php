@@ -17,6 +17,11 @@
     </div>
     
     <div class="w-full">
+      <label for="vRef" class="block text-sm font-medium text-gray-700">Categoria</label>
+      <input type="text" class="border rounded w-full p-2 mt-1 focus:ring focus:ring-blue-300" name="vCategory" required>
+    </div>
+    
+    <div class="w-full">
       <label for="vPrice" class="block text-sm font-medium text-gray-700">Preço base do serviço</label>
       <input type="text" class="border rounded w-full p-2 mt-1 focus:ring focus:ring-blue-300" name="vPrice" required>
     </div>

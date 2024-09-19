@@ -9,14 +9,16 @@
         private $description;
         private $sizes;
         private $price;
+        private $category;
 
-        public function setService($name, $description, $reference, $price, $sizes = null, $id = null) {
+        public function setService($name, $description, $reference, $price, $category, $sizes = null, $id = null) {
             $this->name = $name;
             $this->description = $description;
             $this->id = $id;
             $this->reference = $reference;
             $this->sizes = $sizes;
             $this->price = $price;
+            $this->category = $category;
             return $this;
         }
 

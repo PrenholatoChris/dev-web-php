@@ -6,8 +6,9 @@ class Sale{
     private $address_id;
     private $totalValue;
     private $date;
+    private $status;
 
-    function __construct($cpf, $address_id, $totalValue, $date=null, $id=null){
+    function __construct($cpf, $address_id, $totalValue, $status = "aberto", $date=null, $id=null){
         $this->cpf = $cpf;
         $this->address_id = $address_id;
         $this->totalValue = $totalValue;
@@ -16,6 +17,7 @@ class Sale{
             $this->date = time();
         }
         $this->id = $id;
+        $this->status = $status;
     }
 
     function __set($atrib, $value){

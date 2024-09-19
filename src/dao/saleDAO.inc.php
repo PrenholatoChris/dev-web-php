@@ -16,20 +16,21 @@ class SaleDAO{
     private function mapSales($rows){
         $arr = array();
         foreach($rows as $row){
-            $arr[] = new Sale($row->cpf, $row->address_id, $row->totalValue, $row->date, $row->id);
+            $arr[] = new Sale($row->cpf, $row->address_id, $row->totalValue, $row->status, $row->date, $row->id);
         }
         return $arr;
     }
 
     public function insertSale($venda, $carrinho){
         $sql = $this->con->prepare("insert into sales 
-        (cpf, date, totalValue, address_id)
-        values (:cpf, :data, :val, :address)");
+        (cpf, date, totalValue, address_id, status)
+        values (:cpf, :data, :val, :address, :status)");
 
         $sql->bindValue(':cpf', $venda->cpf);
         $sql->bindValue(':data', converterDataToMysql($venda->date));
         $sql->bindValue(':val', $venda->totalValue);
         $sql->bindValue(':address', $venda->address_id);
+        $sql->bindValue(':status', $venda->status);
         $sql->execute();
 
         $id = $this->getIdSale();
@@ -60,7 +61,7 @@ class SaleDAO{
 
         $list = array();
         while($v = $sql->fetch(PDO::FETCH_OBJ)){
-            $sale = new Sale($v->cpf, $v->address_id, $v->totalValue, converterDataFromMySql($v->saleDate), $v->id);
+            $sale = new Sale($v->cpf, $v->address_id, $v->totalValue, $v->status, converterDataFromMySql($v->saleDate), $v->id);
             $list[] = $sale;
         }
         return $list;

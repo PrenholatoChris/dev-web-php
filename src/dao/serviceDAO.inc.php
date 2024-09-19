@@ -14,7 +14,7 @@ class serviceDAO
 
     private function mapservice($serviceTemp) {
         $service = new Service();
-        return $service->setservice($serviceTemp->name, $serviceTemp->description, $serviceTemp->ref, $serviceTemp->price, null,$serviceTemp->id);
+        return $service->setservice($serviceTemp->name, $serviceTemp->description, $serviceTemp->ref, $serviceTemp->price, $serviceTemp->category, null,$serviceTemp->id);
     }
 
     private function mapSizes($sizes) {
@@ -128,7 +128,8 @@ class serviceDAO
         $sql = $this->conn->prepare("
             SELECT * from products 
             WHERE (name LIKE CONCAT('%', :parametro, '%') 
-            OR ref LIKE CONCAT('%', :parametro, '%'))
+            OR ref LIKE CONCAT('%', :parametro, '%')
+            OR category LIKE CONCAT('%', :parametro, '%'))
             AND type = 's'
         ");
         $sql->bindValue(":parametro", $parametro);

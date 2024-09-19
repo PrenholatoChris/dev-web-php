@@ -9,7 +9,8 @@ CREATE TABLE `products` (
   `stock` INTEGER,
   `price` DOUBLE,
   `ref` VARCHAR(11),
-  `type` VARCHAR(1)
+  `type` VARCHAR(1), 
+  `category` VARCHAR(30)
 );
 
 CREATE TABLE `service_prop` (
@@ -58,7 +59,8 @@ CREATE TABLE `sales` (
   `address_id` INTEGER NOT NULL,
   `cpf` varchar(15) NOT NULL,
   `date` date NOT NULL,
-  `totalValue` float NOT NULL
+  `totalValue` float NOT NULL,
+  `status` varchar(15) NOT NULL
 );
 
 ALTER TABLE `addresses` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
@@ -78,15 +80,15 @@ INSERT INTO `addresses` (user_id, postal_code, uf, city, street, complement,neig
 INSERT INTO `addresses` (user_id, postal_code, uf, city, street, complement,neighborhood, number, phone, receiver) VALUES ("2", "29166894", "ES", "Vitoria", "Rua Algusto robert", "Apartamento", "Jardim da penha", "11", "27981611010", "Casa de vitoria");
 INSERT INTO `addresses` (user_id, postal_code, uf, city, street, complement,neighborhood, number, phone, receiver) VALUES ("3", "29500000", "ES", "Alegre", "Rua Quinze de Agosto", "Casa", "Centro", "190", "27988711010", "Casa de alegre");
 
-INSERT INTO `products` (name, description, stock, price, ref, type) VALUES ("daniel", "descricao do produto grande caro", 900, 99.99, "1", "p");
-INSERT INTO `products` (name, description, stock, price, ref, type) VALUES ("daniel2.0", "Produto muito caro e gigantesco", 10, 999.99, "2", "p");
-INSERT INTO `products` (name, description, stock, price, ref, type) VALUES ("Celular", "celular hightec de alta tecnologia", 2, 99.99, "3", "p");
+INSERT INTO `products` (name, description, stock, price, ref, type, category) VALUES ("daniel", "descricao do produto grande caro", 900, 99.99, "1", "p", "eu");
+INSERT INTO `products` (name, description, stock, price, ref, type, category) VALUES ("daniel2.0", "Produto muito caro e gigantesco", 10, 999.99, "2", "p", "eu");
+INSERT INTO `products` (name, description, stock, price, ref, type, category) VALUES ("Celular", "celular hightec de alta tecnologia", 2, 99.99, "3", "p", "eu");
 
-INSERT INTO `products` (name, description, stock, price, ref, type) VALUES ("Impressao", "Impressão de documentos e imagens em diversos tamanhos", 0, 1, "a", "s");
+INSERT INTO `products` (name, description, stock, price, ref, type, category) VALUES ("Impressao", "Impressão de documentos e imagens em diversos tamanhos", 0, 1, "a", "s", "impressao");
 INSERT INTO `service_prop` (name, price, service_id, type) VALUES ("A4", 0.5, 4, "tamanho");
 INSERT INTO `service_prop` (name, price, service_id, type) VALUES ("A3", 1, 4, "tamanho");
 INSERT INTO `service_prop` (name, price, service_id, type) VALUES ("A2", 2, 4, "tamanho");
 
-INSERT INTO `products` (name, description, stock, price, ref, type) VALUES ("Desenho Personalizado", "Fazemos desenhos personalizados a sua escolha e preferencia", 0, 50.50, "a", "s");
+INSERT INTO `products` (name, description, stock, price, ref, type, category) VALUES ("Desenho Personalizado", "Fazemos desenhos personalizados a sua escolha e preferencia", 0, 50.50, "a", "s", "arte");
 INSERT INTO `service_prop` (name, price, service_id, type) VALUES ("A4", 0, 5, "tamanho");
 INSERT INTO `service_prop` (name, price, service_id, type) VALUES ("A3", 5, 5, "cor");

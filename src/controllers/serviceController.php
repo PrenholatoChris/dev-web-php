@@ -14,6 +14,7 @@
         $vRef = $_REQUEST['vRef'];
         $vPrice = $_REQUEST['vPrice'];
         $vDescription = $_REQUEST['vDescription'];
+        $vCategory = $_REQUEST['vCategory'];
 
         $sizes = $_REQUEST['props'];
         $sizes = json_decode($sizes, true);
@@ -27,7 +28,7 @@
 
         if($opcao == 1){
             $service = new service();
-            $service->setService($vName, $vDescription, $vRef, $vPrice, $list);
+            $service->setService($vName, $vDescription, $vRef, $vPrice, $vCategory,$list);
             
             $serviceDAO = new serviceDAO();
             $serviceDAO->cadastrar($service);

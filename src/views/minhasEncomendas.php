@@ -29,7 +29,7 @@
                                 <td class="py-2 px-4 border-b"><?= $encomenda->id ?></td>
                                 <td class="py-2 px-4 border-b"><?= $encomenda->date ?></td>
                                 <td class="py-2 px-4 border-b"><?= $encomenda->totalValue ?></td>
-                                <td class="py-2 px-4 border-b">Concluido</td>
+                                <td class="py-2 px-4 border-b"><?= $encomenda->status ?></td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
