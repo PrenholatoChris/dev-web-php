@@ -1,6 +1,7 @@
 <?php 
     require_once '../dao/productDAO.inc.php';
     require_once '../classes/product.inc.php';
+    require_once '../classes/service.inc.php';
     require_once '../classes/item.inc.php';
 
     $opcao = (int)$_REQUEST["vOpcao"];
@@ -8,11 +9,12 @@
     if($opcao == 1 | $opcao == 6){
         #Adicionar um item ao carrinho
         $product_id = (int)$_REQUEST["id"];
+
         $productDao = new ProductDAO();
         $product = $productDao->getById($product_id);
 
         $item = new Item($product);
-
+        
         session_start();
         if(isset($_SESSION["carrinho"])){
             $carrinho = $_SESSION["carrinho"];
@@ -26,9 +28,6 @@
                 $carrinho[$idx]->addQuantidade();
             }else{
                 $carrinho[$idx]->decreaseQuantidade();
-                // if($carrinho[$idx]->getQuantidade() == 0){
-                //     header("carrinhoController.php?vOpcao=2&index=$idx");
-                // }
             }
         }else{
             $carrinho[] = $item;
@@ -36,11 +35,9 @@
 
         $_SESSION["carrinho"] = $carrinho;
 
-        // Validar se item eh produto ou servico
-            // se produto
-            header("Location: ../views/showCart.php");
-            // se servico
-            // header("Location: ../views/formService.php");
+
+        header("Location: ../views/showCart.php");
+
     }elseif($opcao == 2){
         #tirar um item do carrinho
         $index = $_REQUEST["index"];
@@ -76,6 +73,46 @@
         }else{
             header('Location: ../views/formLogin.php');
         }
+    }elseif($opcao ==7){
+        #adicionar um servico ao carrinho
+
+        $product_id = (int)$_REQUEST["id"];
+        $size_id = (int)$_REQUEST["size_id"];
+    
+        $serviceDao = new serviceDAO();
+        $service = $serviceDao->getFullById($product_id);
+
+        $size_value = findValueOfSizeById($size_id, $service->sizes);
+
+        $service->price = $service->price + $size_value;
+
+        $item = new Item($service);
+        
+        session_start();
+        if(isset($_SESSION["carrinho"])){
+            $carrinho = $_SESSION["carrinho"];
+        }else{
+            $carrinho = array();
+        }
+
+        $idx = buscaCarrinho($service->id, $carrinho);
+        if($idx != -1){
+            if($opcao == 1){
+                $carrinho[$idx]->addQuantidade();
+            }else{
+                $carrinho[$idx]->decreaseQuantidade();
+            }
+        }else{
+            $carrinho[] = $item;
+        }
+
+        $_SESSION["carrinho"] = $carrinho;
+
+        $size = null;
+        if(isset($_REQUEST["tamanho"])){
+            $size = (int)$_REQUEST["tamanho"];
+        }
+
     }
 
     function buscaCarrinho($produtoId, $vetor){
@@ -89,6 +126,15 @@
         return $index;
     }
 
+    function findValueOfSizeById($id,$array){
+        $value = 0;
+        foreach($array as $size){
+            if($size->id == $id){
+                $value = $size->value;
+            }
+        }
+        return $value;
+    }
 
 
 

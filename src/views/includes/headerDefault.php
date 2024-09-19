@@ -17,7 +17,7 @@
             <li><a href="index.php" class="items-center"><i class="bi-house mr-1"></i>Home</a></li>
             <li><a href="#" class="items-center"><i class="bi-telephone mr-1"></i>Fale conosco</a></li>
             <li  class="cursor-pointer">
-                <a id="dropdownDefaultButton" data-dropdown-trigger="hover" data-dropdown-toggle="dropdown" href="../controllers/produtoController.php?vOpcao=3" class="items-center" type="button">Serviços</a>
+                <a id="dropdownDefaultButton" data-dropdown-trigger="hover" data-dropdown-toggle="dropdown" href="../controllers/serviceController.php?vOpcao=2" class="items-center flex flex-row" type="button">Produtos</a>
             </li>
             <li><a href="showCart.php" class="items-center"><img src="../assets/cart3.png" alt="Carrinho"></a></li>
         </ul>

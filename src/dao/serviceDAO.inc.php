@@ -38,7 +38,7 @@ class serviceDAO
 
     private function cadastrarTamanhos($id, $sizes) {
         foreach ($sizes as $s) {
-            $sql = $this->conn->prepare("INSERT INTO service_sizes (name, price, service_id) VALUES (:name, :price, :service_id)");
+            $sql = $this->conn->prepare("INSERT INTO service_prop (name, price, service_id) VALUES (:name, :price, :service_id)");
             $sql->bindValue(":name", $s->name);
             $sql->bindValue(":price", $s->price);
             $sql->bindValue(":service_id", $id);
@@ -46,7 +46,7 @@ class serviceDAO
         }
     }
 
-    function   cadastrar(Service $service) {
+    function cadastrar(Service $service) {
         $sql = $this->conn->prepare("INSERT INTO products (name, description, ref, price, type) VALUES (:name, :description, :ref, :price, :type)");
         $sql->bindValue(":name", $service->name);
         $sql->bindValue(":description", $service->description);
@@ -87,7 +87,7 @@ class serviceDAO
             SELECT 
                 s.name, s.price, s.id
             FROM products p
-            INNER JOIN service_sizes s 
+            INNER JOIN service_prop s 
             ON p.id = s.service_id
             WHERE p.id = :id
         ");
@@ -116,7 +116,7 @@ class serviceDAO
     private function atualizarSizes($serviceId, $sizes){
         // 1. Obter todos os IDs de tamanhos relacionados ao serviço no banco de dados
         $sql = $this->conn->prepare("
-            SELECT id FROM service_sizes WHERE service_id = :service_id
+            SELECT id FROM service_prop WHERE service_id = :service_id
         ");
         $sql->bindValue(":service_id", $serviceId);
         $sql->execute();
@@ -130,7 +130,7 @@ class serviceDAO
             } else {
                 // Atualizar tamanhos existentes
                 $sql = $this->conn->prepare("
-                    UPDATE service_sizes 
+                    UPDATE service_prop 
                     SET name = :name, price = :price 
                     WHERE id = :size_id
                 ");
@@ -149,7 +149,7 @@ class serviceDAO
     
         if (!empty($sizesToDelete)) {
             $sql = $this->conn->prepare("
-                DELETE FROM service_sizes 
+                DELETE FROM service_prop 
                 WHERE id IN (" . implode(',', array_map('intval', $sizesToDelete)) . ")
             ");
             $sql->execute();
@@ -166,7 +166,7 @@ class serviceDAO
     }
 
     private function deleteSizes($serviceId){
-        $sql = $this->conn->prepare("DELETE FROM service_sizes WHERE service_id = :service_id");
+        $sql = $this->conn->prepare("DELETE FROM service_prop WHERE service_id = :service_id");
         $sql->bindValue(":service_id", $serviceId);
         $sql->execute();
     }

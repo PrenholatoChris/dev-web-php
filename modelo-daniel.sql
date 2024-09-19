@@ -9,51 +9,14 @@ CREATE TABLE `products` (
   `stock` INTEGER,
   `price` DOUBLE,
   `ref` VARCHAR(11),
-  `type` VARCHAR(1),
-
-
+  `type` VARCHAR(1)
 );
--- , `is_product` INTEGER(1)
-
--- CREATE TABLE `services` (
---   `id` INTEGER AUTO_INCREMENT PRIMARY KEY,
---   `name` VARCHAR(255),
---   `description` VARCHAR(255),
---   `image` BLOB
--- );
-
--- CREATE TABLE `types` (
---   `id` INTEGER AUTO_INCREMENT PRIMARY KEY,
---   `description` VARCHAR(255),
---   `service_id` INTEGER
--- );
-
-CREATE TABLE `product_sizes` (
-  `id` INTEGER AUTO_INCREMENT PRIMARY KEY,
-  `name` VARCHAR(255),
-  `product_id` INTEGER
-);
-
--- IMPRESSAO
-a4 e pretobranco
-
--- PRETO OU BRANCO
--- GRANDE OU PEQUENO
-
-
 
 CREATE TABLE `service_prop` (
   `id` INTEGER AUTO_INCREMENT PRIMARY KEY,
   `name` VARCHAR(255),
-  `valor` VARCHAR(255),
+  `price` VARCHAR(255),
   `service_id` INTEGER
-);
-
-CREATE TABLE `orders` (
-  `id` INTEGER AUTO_INCREMENT PRIMARY KEY,
-  `user_id` INTEGER,
-  `address_id` INTEGER,
-  `date` TIMESTAMP
 );
 
 CREATE TABLE `users` (
@@ -64,26 +27,6 @@ CREATE TABLE `users` (
   `email` VARCHAR(255),
   `is_admin` BOOLEAN,
   `created_at` TIMESTAMP
-);
-
-CREATE TABLE `order_products` (
-  `id` INTEGER AUTO_INCREMENT PRIMARY KEY,
-  `product_id` INTEGER,
-  `order_id` INTEGER,
-  `quantity` INTEGER,
-  `type` VARCHAR(255),
-  `size` VARCHAR(255),
-  `value_on_sell` DOUBLE
-);
-
-CREATE TABLE `order_services` (
-  `id` INTEGER AUTO_INCREMENT PRIMARY KEY,
-  `service_id` INTEGER,
-  `order_id` INTEGER,
-  `quantity` INTEGER,
-  `type` VARCHAR(255),
-  `size` VARCHAR(255),
-  `value_on_sell` DOUBLE
 );
 
 CREATE TABLE `addresses` (
@@ -103,17 +46,10 @@ CREATE TABLE `addresses` (
 CREATE TABLE `items` (
   `id` INTEGER AUTO_INCREMENT PRIMARY KEY,
   `product_id` INTEGER NOT NULL,
-  --prop values
   `amount` INTEGER NOT NULL,
   `totalValue` float NOT NULL,
   `sale_id` INTEGER NOT NULL
 );
-
-prd_size(
-  "id",
-  "nome do tamanho",
-  "prd_id",
-)
 
 
 CREATE TABLE `sales` (
@@ -125,21 +61,6 @@ CREATE TABLE `sales` (
 );
 
 ALTER TABLE `addresses` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
-
-ALTER TABLE `orders` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
-ALTER TABLE `orders` ADD FOREIGN KEY (`address_id`) REFERENCES `addresses` (`id`);
-
-ALTER TABLE `order_products` ADD FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`);
-ALTER TABLE `order_products` ADD FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
-
--- ALTER TABLE `types` ADD FOREIGN KEY (`service_id`) REFERENCES `services` (`id`);
-
-ALTER TABLE `product_sizes` ADD FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
-
-ALTER TABLE `order_services` ADD FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`);
--- ALTER TABLE `order_services` ADD FOREIGN KEY (`service_id`) REFERENCES `services` (`id`);
-
--- ALTER TABLE `service_sizes` ADD FOREIGN KEY (`service_id`) REFERENCES `services` (`id`);
 
 ALTER TABLE `items`
   ADD FOREIGN KEY (`sale_id`) REFERENCES `sales` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
@@ -158,3 +79,12 @@ INSERT INTO `addresses` (user_id, postal_code, uf, city, street, complement,neig
 INSERT INTO `products` (name, description, stock, price, ref, type) VALUES ("daniel", "descricao do produto grande caro", 900, 99.99, "1", "p");
 INSERT INTO `products` (name, description, stock, price, ref, type) VALUES ("daniel2.0", "Produto muito caro e gigantesco", 10, 999.99, "2", "p");
 INSERT INTO `products` (name, description, stock, price, ref, type) VALUES ("Celular", "celular hightec de alta tecnologia", 2, 99.99, "3", "p");
+
+INSERT INTO `products` (name, description, stock, price, ref, type) VALUES ("Impressao", "Impressão de documentos e imagens em diversos tamanhos", 0, 1, "a", "s");
+INSERT INTO `service_prop` (name, price, service_id) VALUES ("A4", 0.5, 4);
+INSERT INTO `service_prop` (name, price, service_id) VALUES ("A3", 1, 4);
+INSERT INTO `service_prop` (name, price, service_id) VALUES ("A2", 2, 4);
+
+INSERT INTO `products` (name, description, stock, price, ref, type) VALUES ("Desenho Personalizado", "Fazemos desenhos personalizados a sua escolha e preferencia", 0, 50.50, "a", "s");
+INSERT INTO `service_prop` (name, price, service_id) VALUES ("A4", 0, 5);
+INSERT INTO `service_prop` (name, price, service_id) VALUES ("A3", 5, 5);

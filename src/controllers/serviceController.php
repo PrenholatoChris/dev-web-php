@@ -66,11 +66,15 @@
             header("Location: ../views/showServices.php");   
         }
     }
-    else if($opcao == 3){ // get-by-id
+    else if($opcao == 3 | $opcao == 7){ // get-by-id
         $id = $_REQUEST["vId"];
         $serviceDAO = new serviceDAO();
         $_SESSION["servico"] = $serviceDAO->getFullById($id);
-        header("Location: ../views/formAtualizarService.php");
+        if($opcao == 3){
+            header("Location: ../views/formAtualizarService.php");
+        }else{
+            header("Location: ../views/formSelectServiceSize.php");
+        }
     }
     else if ($opcao == 5){ // Deletar
         $id = $_REQUEST["vId"];
