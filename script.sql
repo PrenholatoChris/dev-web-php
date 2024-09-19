@@ -1,6 +1,7 @@
-DROP DATABASE grafica;
+DROP DATABASE IF EXISTS grafica;
 CREATE DATABASE grafica;
 USE grafica;
+
 
 CREATE TABLE `products` (
   `id` INTEGER AUTO_INCREMENT PRIMARY KEY,
