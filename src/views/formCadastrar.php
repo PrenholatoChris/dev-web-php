@@ -13,6 +13,13 @@
             </div> 
         </div>
         <div class="w-full flex flex-col mb-1">
+            <label for="vCpf">cpf</label>
+            <div class="flex flex-row bg-white rounded-md px-2 py-0.5">
+            <i class="bi bi-card-heading mr-2 text-slate-500"></i>
+               <input type="text" name="vCpf" class="w-full text-slate-800 focus:outline-none focus:ring-0 focus:border-transparent focus:bg-transparent focus:shadow-none" placeholder="CPF">
+            </div> 
+        </div>
+        <div class="w-full flex flex-col mb-1">
             <label for="vEmail">Email</label>
             <div class="flex flex-row bg-white rounded-md px-2 py-0.5">
                <i class="bi-envelope mr-2 text-slate-500"></i>

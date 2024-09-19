@@ -31,7 +31,7 @@
         <div id="dropdownUser" class="z-10 absolute hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
             <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownDefaultButtonUser">
                 <li>
-                    <a href="../controllers/vendaController.php?vOpcao=4" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Minhas encomendas</a>
+                    <a href="../controllers/vendaController.php?vOpcao=4" class="block px-4 py-2 hover:bg-gray-100 ">Minhas encomendas</a>
                 </li>
             </ul>
         </div>

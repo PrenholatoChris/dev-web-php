@@ -8,6 +8,7 @@
     if($opcao == 1) //Cadastrar
     {
         $nome = $_REQUEST["vNome"];
+        $cpf = $_REQUEST["vCpf"];
         $email = $_REQUEST["vEmail"];
         $senha = $_REQUEST["vSenha"];
         $confirmarSenha = $_REQUEST["vSenhaConf"];
@@ -34,7 +35,7 @@
         }
         
         $usuario = new User();
-        $usuario->setUser($nome, 99999999999, $email, $senha, 0);
+        $usuario->setUser($nome, $cpf, $email, $senha, 0);
         $userDao = new userDAO();
         $userDao->cadastrar($usuario);
         header("Location: ../views/formLogin.php");

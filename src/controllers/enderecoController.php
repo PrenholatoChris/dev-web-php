@@ -27,7 +27,10 @@
         $enderecoDao = new AddressDAO();
         $enderecoDao->cadastrar($endereco);
 
-        header("Location: ./enderecoController.php?vOpcao=3");
+        $comprando = $_REQUEST["comprando"];
+
+        header("Location: ./enderecoController.php?vOpcao=3&comprando=$comprando");
+
     }
     elseif($opcao == 2 | $opcao == 7) //GetById
     {
@@ -42,14 +45,19 @@
             header('Location: vendaController.php?vOpcao=1');
         }
     }
-    elseif($opcao == 3 | $opcao == 6) //GetAllByUserId
+    elseif($opcao == 3 | $opcao == 6 ) //GetAllByUserId
     {
         $enderecoDao = new AddressDAO();
         $enderecos = $enderecoDao->getAllByUser($_SESSION["user"]->id);
         $_SESSION["enderecos"] = $enderecos;
+        $comprando = $_REQUEST["comprando"];
 
         if($opcao == 3){
-            header("Location: ../views/userAddresses.php");
+            if($comprando){
+                header("Location: ../views/formSelectAddress.php");
+            }else{
+                header("Location: ../views/userAddresses.php");
+            }
         }else{
             #Escolher endereco para a compra
             header('Location: ../views/formSelectAddress.php');

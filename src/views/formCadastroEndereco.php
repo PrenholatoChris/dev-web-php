@@ -3,10 +3,15 @@
     require_once "./includes/header.php";
 
     $usuario = $_SESSION["user"];
+    
+    $comprando = 0;
+    if(isset($_REQUEST["comprando"])){
+        $comprando = (int)$_REQUEST["comprando"];
+    }
 ?>
 
 <div class="flex justify-center w-full mb-5 mt-5">
-    <form id="form" action="../controllers/enderecoController.php?vOpcao=1&vUserId=<?= $usuario->id ?>" method="post" class=" w-1/3 h-fit items-center flex flex-col gap-2">
+    <form id="form" action="../controllers/enderecoController.php?vOpcao=1&vUserId=<?=$usuario->id?>&comprando=<?=$comprando?>" method="post" class=" w-1/3 h-fit items-center flex flex-col gap-2">
         <span class="w-full">
             <p class="text-sm text-gray-500 mb-2">
                 <a href="./userProfile.php">Sua conta</a> > <a href="../controllers/enderecoController.php?vOpcao=3">Seus Endereços</a> > <span class="text-pink-500"> Novo endereço</span>

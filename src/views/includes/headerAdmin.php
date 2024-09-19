@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body class="min-h-screen min-w-screen">
-    <div class="flex justify-between flex-row w-full h-fit px-4 py-2 items-center bg-gray-200 dark:bg-gray-500 text-xl">
+    <div class="flex justify-between flex-row w-full h-fit px-4 py-2 items-center bg-gray-200 text-xl">
         <div class="w-16 h-full">
             <img class="w-full object-cover" src="../assets/PrintShop.png" alt="Logo">
         </div>
@@ -30,10 +30,10 @@
                             <p class="bg-gray-100 px-2 cursor-default">Produtos</p>
                             <ul>
                                 <li>
-                                    <a href="formProduct.php" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Cadastrar</a>
+                                    <a href="formProduct.php" class="block px-4 py-2 hover:bg-gray-100 ">Cadastrar</a>
                                 </li>
                                 <li>
-                                    <a href="../controllers/produtoController.php?vOpcao=6" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Consultar</a>
+                                    <a href="../controllers/produtoController.php?vOpcao=6" class="block px-4 py-2 hover:bg-gray-100 ">Consultar</a>
                                 </li>
                             </ul>
                         </li>
@@ -41,10 +41,10 @@
                             <p class="bg-gray-100 px-2 cursor-default">Servicos</p>
                             <ul>
                                 <li>
-                                    <a href="formService.php" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Cadastrar</a>
+                                    <a href="formService.php" class="block px-4 py-2 hover:bg-gray-100 ">Cadastrar</a>
                                 </li>
                                 <li>
-                                    <a href="../controllers/serviceController.php?vOpcao=6" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Consultar</a>
+                                    <a href="../controllers/serviceController.php?vOpcao=6" class="block px-4 py-2 hover:bg-gray-100 ">Consultar</a>
                                 </li>
                             </ul>
                         </li>
@@ -58,7 +58,7 @@
         <div id="dropdownUser" class="z-10 absolute hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
             <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownDefaultButtonUser">
                 <li>
-                    <a href="../controllers/vendaController.php?vOpcao=4" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Minhas encomendas</a>
+                    <a href="../controllers/vendaController.php?vOpcao=4" class="block px-4 py-2 hover:bg-gray-100 ">Minhas encomendas</a>
                 </li>
             </ul>
         </div>
