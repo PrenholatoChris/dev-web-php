@@ -16,6 +16,7 @@ CREATE TABLE `service_prop` (
   `id` INTEGER AUTO_INCREMENT PRIMARY KEY,
   `name` VARCHAR(255),
   `price` DOUBLE,
+  `type` VARCHAR(255),
   `service_id` INTEGER
 );
 
@@ -82,10 +83,10 @@ INSERT INTO `products` (name, description, stock, price, ref, type) VALUES ("dan
 INSERT INTO `products` (name, description, stock, price, ref, type) VALUES ("Celular", "celular hightec de alta tecnologia", 2, 99.99, "3", "p");
 
 INSERT INTO `products` (name, description, stock, price, ref, type) VALUES ("Impressao", "Impressão de documentos e imagens em diversos tamanhos", 0, 1, "a", "s");
-INSERT INTO `service_prop` (name, price, service_id) VALUES ("A4", 0.5, 4);
-INSERT INTO `service_prop` (name, price, service_id) VALUES ("A3", 1, 4);
-INSERT INTO `service_prop` (name, price, service_id) VALUES ("A2", 2, 4);
+INSERT INTO `service_prop` (name, price, service_id, type) VALUES ("A4", 0.5, 4, "tamanho");
+INSERT INTO `service_prop` (name, price, service_id, type) VALUES ("A3", 1, 4, "tamanho");
+INSERT INTO `service_prop` (name, price, service_id, type) VALUES ("A2", 2, 4, "tamanho");
 
 INSERT INTO `products` (name, description, stock, price, ref, type) VALUES ("Desenho Personalizado", "Fazemos desenhos personalizados a sua escolha e preferencia", 0, 50.50, "a", "s");
-INSERT INTO `service_prop` (name, price, service_id) VALUES ("A4", 0, 5);
-INSERT INTO `service_prop` (name, price, service_id) VALUES ("A3", 5, 5);
+INSERT INTO `service_prop` (name, price, service_id, type) VALUES ("A4", 0, 5, "tamanho");
+INSERT INTO `service_prop` (name, price, service_id, type) VALUES ("A3", 5, 5, "cor");

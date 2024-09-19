@@ -15,13 +15,13 @@
         $vPrice = $_REQUEST['vPrice'];
         $vDescription = $_REQUEST['vDescription'];
 
-        $sizes = $_REQUEST['sizes'];
+        $sizes = $_REQUEST['props'];
         $sizes = json_decode($sizes, true);
         
         $list = array();
         foreach ($sizes as $size) {
             $s = new Sizes();
-            $s->setSizes($size['name'], $size['price'], $size['id']);
+            $s->setSizes($size['name'], $size['price'], $size['tipo'], $size['id']);
             $list[] = $s;
         }
 

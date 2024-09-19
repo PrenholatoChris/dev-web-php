@@ -19,11 +19,20 @@ class serviceDAO
 
     private function mapSizes($sizes) {
         $services_sizes = array();
+    
         foreach ($sizes as $s) {
             $size = new Sizes();
-            $size->setSizes($s->name, $s->price, $s->id);
-            $services_sizes[] = $size;
+            $size->setSizes($s->name, $s->price, $s->type, $s->id);
+    
+            // Verifica se o tipo já existe no array
+            if (!isset($services_sizes[$s->type])) {
+                $services_sizes[$s->type] = array(); // Cria um novo array para o tipo
+            }
+    
+            // Adiciona o objeto size ao array do tipo correspondente
+            $services_sizes[$s->type][] = $size;
         }
+    
         return $services_sizes;
     }
 
@@ -38,10 +47,11 @@ class serviceDAO
 
     private function cadastrarTamanhos($id, $sizes) {
         foreach ($sizes as $s) {
-            $sql = $this->conn->prepare("INSERT INTO service_prop (name, price, service_id) VALUES (:name, :price, :service_id)");
+            $sql = $this->conn->prepare("INSERT INTO service_prop (name, price, service_id, type) VALUES (:name, :price, :service_id, :type)");
             $sql->bindValue(":name", $s->name);
             $sql->bindValue(":price", $s->price);
             $sql->bindValue(":service_id", $id);
+            $sql->bindValue(":type", $s->type);
             $sql->execute();
         }
     }
@@ -85,11 +95,12 @@ class serviceDAO
         
         $sql = $this->conn->prepare("
             SELECT 
-                s.name, s.price, s.id
+                s.name, s.price, s.id , s.type
             FROM products p
             INNER JOIN service_prop s 
             ON p.id = s.service_id
             WHERE p.id = :id
+            GROUP BY s.type, s.name, s.price, s.id
         ");
         $sql->bindValue(":id", $id);
         $sql->execute();
@@ -98,8 +109,8 @@ class serviceDAO
         while ($s = $sql->fetch(PDO::FETCH_OBJ)) {
             $sizes[] = $s;
         }
-        $service->sizes = $this->mapSizes($sizes);
 
+        $service->sizes = $this->mapSizes($sizes);        
         return $service;
     }
 
@@ -139,12 +150,14 @@ class serviceDAO
         $sql->execute();
         $existingSizes = $sql->fetchAll(PDO::FETCH_COLUMN, 0); // Retorna uma lista com os IDs dos tamanhos
         // 2. Criar uma lista dos IDs de tamanhos passados para a função
-        $passedSizeIds = [];
+        $passedSizeIds = array();
         foreach ($sizes as $s) {
             if((int)$s->id == -1){
+                echo ("<p> cadastrando </p>");
                 // Inserir novos tamanhos
                 $this->cadastrarTamanhos($serviceId, [$s]);
             } else {
+                echo ("<p> atualizando </p>");
                 // Atualizar tamanhos existentes
                 $sql = $this->conn->prepare("
                     UPDATE service_prop 
@@ -157,13 +170,18 @@ class serviceDAO
                 $sql->execute();
     
                 // Adicionar o ID do tamanho atualizado na lista de tamanhos passados
-                $passedSizeIds[] = $s->id;
+                $passedSizeIds[] = (int) $s->id;
             }
+            var_dump($s);
         }
     
         // 3. Deletar tamanhos que não foram passados para a função
         $sizesToDelete = array_diff($existingSizes, $passedSizeIds); // Tamanhos que existem no banco, mas não foram passados
-    
+        echo ("<p> PassedSizeIds </p>");
+        var_dump($passedSizeIds);
+        echo ("<p> To delete </p>");
+        var_dump($sizesToDelete);
+
         if (!empty($sizesToDelete)) {
             $sql = $this->conn->prepare("
                 DELETE FROM service_prop 

@@ -54,7 +54,7 @@
             <li><a href="../controllers/vendaController.php?vOpcao=2" class="items-center"><i class="bi-receipt bi"></i> Vendas</a></li>
             <li><a href="showCart.php" class="items-center"><i class="bi bi-cart"></i> Carrinho</a></li>
         </ul>
-        <a id="dropdownDefaultButtonUser" data-dropdown-trigger="hover" data-dropdown-toggle="dropdownUser" href="userProfile.php" class="items-center flex flex-row" type="button"><?= $usuario->username ?> <i class="bi-person"></i> </a>
+        <a id="dropdownDefaultButtonUser" data-dropdown-trigger="hover" data-dropdown-toggle="dropdownUser" href="userProfile.php" class="items-center flex flex-row" type="button"> <i class="bi-caret-down-fill text-sm"></i> <?= $usuario->username ?> <i class="bi-person"></i> </a>
         <div id="dropdownUser" class="z-10 absolute hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
             <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownDefaultButtonUser">
                 <li>

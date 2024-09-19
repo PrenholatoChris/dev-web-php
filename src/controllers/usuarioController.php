@@ -78,7 +78,7 @@
             if(isset($_SESSION['carrinho'])){
                 header("Location: ../views/showCart.php");
             }else{
-                header("Location: produtoController.php?vOpcao=3");
+                header("Location: serviceController.php?vOpcao=2");
             }
 
         }else{
