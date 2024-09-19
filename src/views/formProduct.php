@@ -1,40 +1,50 @@
 <?php require_once "./includes/header.php"; ?>
 <h1 class="text-center font-bold text-xl">Inclusão de produto</h1>
   
-<div class="flex justify-center w-full mb-5 mt-5">
-    <form id="form" action="../controllers/produtoController.php?vOpcao=1" method="post" class="border w-1/3 h-fit items-center flex flex-col gap-2 rounded-xl pt-5 pb-5" enctype="multipart/form-data">
-  <div class="columns-md">
-    <label for="vName" class="form-label">Nome</label>
-    <input type="text" class="border rounded w-max" name="vName">
-  </div>
-  <div class="columns-md">
-    <label for="vRef" class="form-label">Referência</label>
-    <input type="text" class="border rounded w-max" name="vRef">
-  </div>
-  <div class="columns-md">
-    <label for="vPrice" class="form-label">Preço</label>
-    <input type="text" class="border rounded w-max" name="vPrice">
-  </div>
-  <div class="columns-md">
-    <label for="vStock" class="form-label">Qde Estoque</label>
-    <input type="text" class="border rounded w-auto" name="vStock">
-  </div>
-  <div class="columns-md">
-    <label for="vImage" class="form-label">Foto:</label>
-    <input type="file" class="border rounded w-max" name="vImage">
-  </div>
-  <div class="columns-md">
-    <label for="vDescription" class="form-label">Descrição do produto: </label>
-    <textarea class="border rounded w-max h-fit" name="vDescription" rows="6" style="resize: none"></textarea>    
-  </div>
-  <input type="hidden" name="vType" value="p">
-  <div class="">
-    <button type="submit" class="px-2 py-1 bg-green-400 rounded w-max-2xl mt-3 hover:bg-green-300">Incluir</button>
-    <button type="reset" class="px-2 py-1 bg-red-400 rounded w-max-2xl mt-3 hover:bg-red-300">Cancelar</button>
-  </div>
-  <input type="hidden" name="vOpcao" value="1">
-</form>
-</div>
+<main class="flex justify-center w-full my-10">
+    <form id="form" action="../controllers/produtoController.php?vOpcao=1" method="post" class="border w-1/3 bg-white shadow-lg p-6 rounded-xl flex flex-col gap-4" enctype="multipart/form-data">
+        
+        <div class="flex flex-col gap-2">
+            <label for="vName" class="font-semibold text-gray-700">Nome</label>
+            <input type="text" class="border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" name="vName" placeholder="Digite o nome do produto">
+        </div>
+
+        <div class="flex flex-col gap-2">
+            <label for="vRef" class="font-semibold text-gray-700">Referência</label>
+            <input type="text" class="border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" name="vRef" placeholder="Digite a referência">
+        </div>
+
+        <div class="flex flex-col gap-2">
+            <label for="vPrice" class="font-semibold text-gray-700">Preço</label>
+            <input type="text" class="border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" name="vPrice" placeholder="Digite o preço">
+        </div>
+
+        <div class="flex flex-col gap-2">
+            <label for="vStock" class="font-semibold text-gray-700">Quantidade em Estoque</label>
+            <input type="text" class="border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" name="vStock" placeholder="Digite a quantidade">
+        </div>
+
+        <div class="flex flex-col gap-2">
+            <label for="vImage" class="font-semibold text-gray-700">Foto:</label>
+            <input type="file" class="border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" name="vImage">
+        </div>
+
+        <div class="flex flex-col gap-2">
+            <label for="vDescription" class="font-semibold text-gray-700">Descrição do produto:</label>
+            <textarea class="border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" name="vDescription" rows="6" style="resize: none" placeholder="Digite a descrição do produto"></textarea>    
+        </div>
+
+        <input type="hidden" name="vType" value="p">
+
+        <div class="flex gap-4 justify-between mt-4">
+            <button type="submit" class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-400 transition duration-200">Incluir</button>
+            <button type="reset" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-400 transition duration-200">Cancelar</button>
+        </div>
+
+        <input type="hidden" name="vOpcao" value="1">
+    </form>
+</main>
+
 
 <?php require_once "./includes/footer.php"; ?>
 

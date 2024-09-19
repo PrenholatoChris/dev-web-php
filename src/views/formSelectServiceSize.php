@@ -28,8 +28,8 @@
                     <?php foreach ($sizeGroup as $size): ?>
 
                     <label class='inline-flex items-center'>
-                        <input type='radio' value='<?= $size->id ?>' class='form-radio text-blue-600'>
-                        <span class='ml-2 text-gray-800'> <?= $size->name ?> + </span><span class='ml-2 text-green-600'>R$ <?= $size->price ?></span>
+                        <input type='radio' name="<?=$size->type?>" value='<?= $size->id ?>' class='form-radio text-blue-600'>
+                        <span class='ml-2 text-gray-800'> <?= $size->name ?></span><span class='ml-2 text-green-600'> + R$ <?= $size->price ?></span>
                     </label>
 
                     <?php endforeach; ?>
