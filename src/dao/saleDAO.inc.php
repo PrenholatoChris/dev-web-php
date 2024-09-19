@@ -50,6 +50,22 @@ class SaleDAO{
         return $this->mapSales($rows);
     }
 
+    public function getAllByUserCpf($user){
+        $sql = $this->con->prepare("
+            select * from sales 
+            where cpf = :cpf 
+        ");
+        $sql->bindValue(':cpf', $user->cpf);
+        $sql->execute();
+
+        $list = array();
+        while($v = $sql->fetch(PDO::FETCH_OBJ)){
+            $sale = new Sale($v->cpf, $v->address_id, $v->totalValue, converterDataFromMySql($v->saleDate), $v->id);
+            $list[] = $sale;
+        }
+        return $list;
+    }
+
     private function insertItems($idVenda,$carrinho){
         foreach($carrinho as $item){
             $sql = $this->con->prepare("insert into items 

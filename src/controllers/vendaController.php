@@ -44,7 +44,14 @@
         header("Location: ../views/showSales.php");
 
     }
-    
-    
+    elseif($opcao == 4){
+        session_start();
+        
+        $usuario = $_SESSION["user"];
 
+        $saleDAO = new SaleDAO();
+        $_SESSION["encomendas"] = $saleDAO->getAllByUserCpf($usuario);
+        var_dump($_SESSION["encomendas"]);
+        header("Location: ../views/minhasEncomendas.php");
+    }
 ?>

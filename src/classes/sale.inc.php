@@ -15,6 +15,7 @@ class Sale{
         if($date == null){
             $this->date = time();
         }
+        $this->id = $id;
     }
 
     function __set($atrib, $value){

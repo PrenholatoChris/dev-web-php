@@ -54,6 +54,13 @@
             <li><a href="../controllers/vendaController.php?vOpcao=2" class="items-center"><i class="bi-receipt bi"></i> Vendas</a></li>
             <li><a href="showCart.php" class="items-center"><i class="bi bi-cart"></i> Carrinho</a></li>
         </ul>
-        <button class="m-0 p-0 w-fit h-fit" type="button"><a href="userProfile.php" class="items-center"> <?= $usuario->username ?> <i class="bi-person"></i></a></button>
+        <a id="dropdownDefaultButtonUser" data-dropdown-trigger="hover" data-dropdown-toggle="dropdownUser" href="userProfile.php" class="items-center flex flex-row" type="button"><?= $usuario->username ?> <i class="bi-person"></i> </a>
+        <div id="dropdownUser" class="z-10 absolute hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
+            <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownDefaultButtonUser">
+                <li>
+                    <a href="../controllers/vendaController.php?vOpcao=4" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Minhas encomendas</a>
+                </li>
+            </ul>
+        </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
