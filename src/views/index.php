@@ -35,7 +35,7 @@
     </section>
 
     <section class="mt-10 text-center">
-      <a href="#" class="px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+      <a href="../controllers/serviceController.php?vOpcao=2" class="px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
         Confira nossos Produtos
       </a>
     </section>
