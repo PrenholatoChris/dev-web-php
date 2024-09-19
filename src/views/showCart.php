@@ -38,7 +38,27 @@ if (isset($_SESSION["carrinho"])) {
                                     <td class="border"><?= $item->getProduto()->id ?></td>
                                     <td class="border"><?= $item->getProduto()->name ?></td>
                                     <td class="border"><?= $item->getProduto()->price ?></td>
-                                    <td class="border"><a href="../controllers/carrinhoController.php?vOpcao=6&id=<?= $item->getProduto()->id ?>" class='text-gray-800 bg-red-300 rounded-md px-1 hover:bg-fuchsia-200 hover:text-black text-center'>-</a>
+                                    <td class="border">
+
+                                    <?php 
+                                          if($item->getSizeId() == -1){
+                                    ?>
+                                          <a href="../controllers/carrinhoController.php?vOpcao=6&id=<?= $item->getProduto()->id ?>" class='text-gray-800 bg-red-300 rounded-md px-1 hover:bg-fuchsia-200 hover:text-black text-center'>-</a>
+                                          <span><?= $item->getQuantidade() ?></span>
+                                          <a href="../controllers/carrinhoController.php?vOpcao=1&id=<?= $item->getProduto()->id ?>" class='text-gray-800 bg-green-300 rounded-md px-1 hover:bg-green-200 hover:text-black text-center self-center'>+</a>
+                                    <?php
+                                          }
+                                          else{
+                                    ?>
+                                          <a href="../controllers/carrinhoController.php?vOpcao=6&id=<?= $item->getProduto()->id ?>&size_id=<?=$item->getSizeId()?>" class='text-gray-800 bg-red-300 rounded-md px-1 hover:bg-fuchsia-200 hover:text-black text-center'>-</a>
+                                          <span><?= $item->getQuantidade() ?></span>
+                                          <a href="../controllers/carrinhoController.php?vOpcao=1&id=<?= $item->getProduto()->id ?>&size_id=<?=$item->getSizeId()?>" class='text-gray-800 bg-green-300 rounded-md px-1 hover:bg-green-200 hover:text-black text-center self-center'>+</a>
+                                    
+                                    <?php
+                                          }
+                                    ?>
+
+                                          <a href="../controllers/carrinhoController.php?vOpcao=6&id=<?= $item->getProduto()->id ?>" class='text-gray-800 bg-red-300 rounded-md px-1 hover:bg-fuchsia-200 hover:text-black text-center'>-</a>
                                           <span><?= $item->getQuantidade() ?></span>
                                           <a href="../controllers/carrinhoController.php?vOpcao=1&id=<?= $item->getProduto()->id ?>" class='text-gray-800 bg-green-300 rounded-md px-1 hover:bg-green-200 hover:text-black text-center self-center'>+</a>
                                     </td>

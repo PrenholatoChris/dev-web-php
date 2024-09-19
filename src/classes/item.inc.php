@@ -5,11 +5,13 @@ class Item{
     private int $amount;
     private float $totalValue;
     private Product $produto;
+    private int $sizeId;
 
     function __construct($produto){
         $this->amount = 1;
         $this->produto = $produto;
         $this->totalValue = $produto->price;
+        $this->sizeId = -1;
     }
 
     public function getValorItem(){
@@ -40,6 +42,13 @@ class Item{
         return $this->produto;
     }
 
+    public function getSizeId(){
+        return $this->sizeId;
+    }
+    
+    public function setSizeId($value){
+        $this->sizeId = $value;
+    }
 }
 
 ?>

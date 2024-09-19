@@ -74,7 +74,7 @@
         }else{
             header('Location: ../views/formLogin.php');
         }
-    }elseif($opcao ==7){
+    }elseif($opcao == 7 || $opcao == 8){
         #adicionar um servico ao carrinho
 
         $product_id = (int)$_REQUEST["id"];
@@ -82,16 +82,14 @@
     
         $serviceDao = new serviceDAO();
         $service = $serviceDao->getFullById($product_id);
-        $size_value = findValueOfSizeById($size_id, $service->sizes);
-
-        $service->price = $service->price + $size_value;
-
+        updateServiceBySizes($size_id, $service);
 
         $prd = new Product();
         $prd->setProduct($service->name, $service->description, 0, $service->price, $service->reference, "s", $service->id);
 
         $item = new Item($prd);
-        
+        $item->setSizeId($size_id); 
+
         session_start();
         if(isset($_SESSION["carrinho"])){
             $carrinho = $_SESSION["carrinho"];
@@ -99,9 +97,9 @@
             $carrinho = array();
         }
 
-        $idx = buscaCarrinho($service->id, $carrinho);
+        $idx = buscaServicoCarrinho($service->id, $carrinho, $size_id);
         if($idx != -1){
-            if($opcao == 1){
+            if($opcao == 7){
                 $carrinho[$idx]->addQuantidade();
             }else{
                 $carrinho[$idx]->decreaseQuantidade();
@@ -125,16 +123,23 @@
         return $index;
     }
 
-    function findValueOfSizeById($id,$array){
-        $value = 0;
-        foreach($array as $size){
-            if($size->id == $id){
-                $value = $size->price;
+    function buscaServicoCarrinho($servicoId, $vetor, $size_id){
+        $index = -1;
+        for($i=0; $i<count($vetor); $i++){
+            if ($servicoId == $vetor[$i]->getProduto()->id && $vetor[$i]->getSizeId() == $size_id ) {
+                $index = $i;
+                break;
             }
         }
-        return $value;
+        return $index;
     }
 
-
-
+    function updateServiceBySizes($size_id, $service){
+        foreach($service->sizes as $size){
+            if($size->id == $size_id){
+                $service->name = $service->name . ' - ' . $size->name;
+                $service->price = $service->price + $size->price;
+            }
+        }
+    }
 ?>
