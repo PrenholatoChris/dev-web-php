@@ -1,5 +1,6 @@
 <?php 
     require_once '../dao/productDAO.inc.php';
+    require_once '../dao/serviceDAO.inc.php';
     require_once '../classes/product.inc.php';
     require_once '../classes/service.inc.php';
     require_once '../classes/item.inc.php';
@@ -81,12 +82,15 @@
     
         $serviceDao = new serviceDAO();
         $service = $serviceDao->getFullById($product_id);
-
         $size_value = findValueOfSizeById($size_id, $service->sizes);
 
         $service->price = $service->price + $size_value;
 
-        $item = new Item($service);
+
+        $prd = new Product();
+        $prd->setProduct($service->name, $service->description, 0, $service->price, $service->reference, "s", $service->id);
+
+        $item = new Item($prd);
         
         session_start();
         if(isset($_SESSION["carrinho"])){
@@ -107,12 +111,7 @@
         }
 
         $_SESSION["carrinho"] = $carrinho;
-
-        $size = null;
-        if(isset($_REQUEST["tamanho"])){
-            $size = (int)$_REQUEST["tamanho"];
-        }
-
+        header("Location: ../views/showCart.php");
     }
 
     function buscaCarrinho($produtoId, $vetor){
@@ -130,7 +129,7 @@
         $value = 0;
         foreach($array as $size){
             if($size->id == $id){
-                $value = $size->value;
+                $value = $size->price;
             }
         }
         return $value;

@@ -6,7 +6,7 @@
 <div class="w-screen items-center flex justify-center ">
     <div class="bg-gray-300 w-[50vw] h-[50vh] p-4 shadow-2xl shadow-black border rounded-3xl border-gray-700">
         <form action="../controllers/carrinhoController.php" class="flex flex-col justify-between h-full" method="post">
-            <input type="hidden" name="vOpcao" value="1">
+            <input type="hidden" name="vOpcao" value="7">
             <input type="hidden" name="id" value="<?=$servico->id?>">
             
             <div>

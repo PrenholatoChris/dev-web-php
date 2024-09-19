@@ -30,7 +30,7 @@ class Item{
     }
 
     public function decreaseQuantidade(){
-        if($this->amount >= 1){
+        if($this->amount > 1){
             $this->amount--;
             $this->setvalorItem();
         }
