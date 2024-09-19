@@ -113,6 +113,23 @@ class serviceDAO
         $this->atualizarSizes($service->id , $service->sizes);
     }
 
+    function buscaService($parametro){
+        $sql = $this->conn->prepare("
+            SELECT * from products 
+            WHERE (name LIKE CONCAT('%', :parametro, '%') 
+            OR ref LIKE CONCAT('%', :parametro, '%'))
+            AND type = 's'
+        ");
+        $sql->bindValue(":parametro", $parametro);
+        $sql->execute();
+
+        $services = array();
+        while ($s = $sql->fetch(PDO::FETCH_OBJ)) {
+            $services[] = $this->mapservice($s);
+        }
+        return $services;
+    }
+
     private function atualizarSizes($serviceId, $sizes){
         // 1. Obter todos os IDs de tamanhos relacionados ao serviço no banco de dados
         $sql = $this->conn->prepare("

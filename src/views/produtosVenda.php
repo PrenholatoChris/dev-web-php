@@ -17,6 +17,20 @@
 ?>
 <div class="min-h-screen bg-gray-100 flex flex-col justify-between">
     <!-- Main Content -->
+    <form class="bg-white shadow-md rounded-lg p-2 w-full flex justify-center items-center" action="../controllers/serviceController.php" method="POST">
+      <div class="flex items-center">
+        <input
+          type="text"
+          name="vBusca"
+          placeholder="Buscar..."
+          class="flex-grow p-2 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <input type="text" name="vOpcao" value="8" hidden>
+        <button type="submit" class="p-2 bg-blue-500 text-white rounded-r-lg hover:bg-blue-600">
+          <i class="bi-search"></i>
+        </button>
+      </div>
+    </form>
     <main class="flex-grow container mx-auto py-8">
         <section class="text-center mb-8">
             <h1 class="text-3xl font-bold text-gray-900">Cartela de Serviços</h1>
@@ -42,6 +56,9 @@
             </div>
         </div>
 
+        <?php
+          if(!empty($produtos)):
+        ?>
         <hr class="my-8 border-gray-300">
 
         <!-- Showroom de Produtos -->
@@ -56,6 +73,10 @@
             }
           ?>
         </div>
+        
+        <?php 
+          endif; 
+        ?>
     </main>
 
 </div>

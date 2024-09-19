@@ -82,4 +82,21 @@
         $serviceDAO->deletar($id);
         header("Location: ./serviceController.php?vOpcao=6");    
     }
+    else if ($opcao == 8){ // Buscar
+        $busca = $_REQUEST["vBusca"];
+
+        if(isset($_SESSION["produtos"])){
+            unset($_SESSION["produtos"]);
+        }
+
+        if(empty($busca)){
+            header("Location: serviceController.php?vOpcao=2");
+            return;
+        }
+
+        $serviceDAO = new serviceDAO();
+        $_SESSION["servicos"] = $serviceDAO->buscaService($busca);
+
+        header("Location: ../views/produtosVenda.php");
+    }
 ?>
