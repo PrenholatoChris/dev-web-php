@@ -1,24 +1,49 @@
 <?php require_once "./includes/header.php" ?>
 
-<main class="w-full h-[calc(100vh-3.5rem)] dark:bg-gray-800 dark:text-blue-100 flex justify-center content-center bg-slate-100">
-  <div class="w-[70vw] h-fit rounded-3xl ">
-
-    <h1 class="text-center text-4xl font-bold">Bem-vindos a nossa Loja Virtual!</h1>
-
-    <div class="content-center" align="justify">
-      <div class="w-full flex justify-center my-5">
-        <img src="../assets/banner.jpg" class="size-1/2 rounded-3xl" alt="">
-      </div>
-      <div class="w-3/4 mx-auto">
-        <p>Que tal fazer as suas compras sem precisar sair de casa? Então confira a nossa loja virtual. Os mesmos produtos e qualidade que você encontra nas nossas lojas físicas! <strong>Loja Des Web</strong>, agora também online para você!</p><br>
-        <p>A <strong>Loja Des Web</strong> oferece uma experiência única para você! Aqui você escolhe se quer comprar na nossa loja física ou virtual, se quer receber o produto por delivery ou retirar nas lojas e se quer pagar com dinheiro, cartão de débito ou crédito, ou via PIX! Só na <strong>Loja Des Web</strong> você compra do seu jeito!</p><br>
-        <p>Confira nossos produtos e faça suas compras aproveitando nossos Cupons de Desconto, melhores ofertas e promoções imperdíveis!</p>
-      </div>
+<div class="bg-gray-100">
+  <header class="bg-blue-600 p-6 text-white">
+    <div class="container mx-auto text-center">
+      <h1 class="text-4xl font-bold">Bem-vindos à Gráfica Rápida!</h1>
+      <p class="mt-2 text-xl">Compre com comodidade e sem sair de casa.</p>
     </div>
-  </div>
+  </header>
 
-  
-</main>
+  <main class="container mx-auto mt-10 p-6">
+    <!-- Seção do Banner -->
+    <div class="flex justify-center mb-10">
+      <img src="../assets/banner.jpg" class="w-1/2 rounded-3xl shadow-lg" alt="Banner da gráfica">
+    </div>
+
+    <section class="bg-white rounded-lg shadow-lg p-8">
+      <h2 class="text-3xl font-bold mb-4 text-center">Sobre a Nossa Loja</h2>
+      <p class="text-lg text-gray-700 mb-4">
+        Na <strong>Gráfica Rápida</strong>, oferecemos a mesma qualidade e variedade que você já conhece de nossas lojas físicas, agora no conforto da sua casa. Nossa loja online foi criada para garantir que você tenha uma experiência de compra fácil, segura e agradável.
+      </p>
+
+      <p class="text-lg text-gray-700 mb-4">
+        Aqui, você escolhe como prefere fazer suas compras: seja visitando uma de nossas lojas físicas ou navegando pela nossa plataforma online. Escolha também a forma de receber seus produtos: por delivery rápido e seguro ou fazendo a retirada diretamente em uma de nossas lojas.
+      </p>
+
+      <p class="text-lg text-gray-700 mb-4">
+        Oferecemos uma opção de pagamento simples e segura. Aceitamos apenas pagamento via boleto bancário, garantindo que suas compras sejam concluídas de forma prática e confiável.
+      </p>
+
+
+      <p class="text-lg text-gray-700 mb-4">
+        Aproveite nossas ofertas especiais, cupons de desconto exclusivos e promoções imperdíveis. Estamos sempre buscando novas formas de surpreender você com os melhores preços e produtos de qualidade!
+      </p>
+    </section>
+
+    <section class="mt-10 text-center">
+      <a href="#" class="px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        Confira nossos Produtos
+      </a>
+    </section>
+  </main>
+
+</div>
+
+
 
 
 <?php require_once "./includes/footer.php" ?>

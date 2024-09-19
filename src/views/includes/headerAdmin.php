@@ -21,7 +21,7 @@
         </div>
         <ul class="list-none flex flex-row gap-4 w-fit">
             <li><a href="index.php" class="items-center"><i class="bi-house mr-1"></i>Home</a></li>
-            <li><a href="#" class="items-center"><i class="bi-telephone mr-1"></i>Fale conosco</a></li>
+            <li><a href="faleConosco.php" class="items-center"><i class="bi-telephone mr-1"></i>Fale conosco</a></li>
             <li  class="cursor-pointer">
                 <a id="dropdownDefaultButton" data-dropdown-trigger="hover" data-dropdown-toggle="dropdown" href="../controllers/serviceController.php?vOpcao=2" class="items-center flex flex-row" type="button">Produtos <i class="bi-caret-down-fill text-sm"></i> </a>
                 <div id="dropdown" class="z-10 absolute hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
