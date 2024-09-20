@@ -16,12 +16,7 @@
             <h1 class="mb-2 font-bold text-4xl">Seu perfil</h1>
             <p class="">Nome: <?= $usuario->username ?> </p>
             <p class="">Email: <?= $usuario->email ?> </p>
-            <p class="flex gap-2"> 
-                Senha: 
-                <span class="text-gray-800 bg-blue-300 rounded-md px-1 hover:bg-blue-200 hover:text-black">
-                    <a type="button"><a href="formAlterarSenha.php">Alterar senha</a>
-                </span>
-            </p>
+            <p class="">CPF: <?= $usuario->cpf ?> </p>
             <p class="flex gap-2">
                 Endereços:
                 <span class="text-gray-800 bg-amber-300 rounded-md px-1 hover:bg-amber-200 hover:text-black">
