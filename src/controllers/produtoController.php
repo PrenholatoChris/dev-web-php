@@ -59,17 +59,27 @@
     elseif($opcao == 5) //Atualizar
     {
         $id = $_REQUEST["vId"];
+
         $nome = $_REQUEST["vName"];
+        $description = $_REQUEST["vDescription"];
         $stock = $_REQUEST["vStock"];
         $price = $_REQUEST["vPrice"];
-        $image = $_REQUEST["vImage"];
+        $ref = $_REQUEST["vRef"];
+        // $type = $_REQUEST["vType"];
 
         $product = $_SESSION["produto"];
-        $product->setProduct($nome, $stock, $price, $image, $id);
+
+
+        uploadImage($ref);
+
+
+        $product = $_SESSION["produto"];
+        $product = new Product();
+        $product->setProduct($nome, $description, $stock, $price, $ref, $product->type, $id);
         
         $enderecoDao = new ProductDAO();
         $enderecoDao->atualizar($product);
 
-        header("Location: ./enderecoController.php?vOpcao=3");
+        header("Location: ./produtoController.php?vOpcao=6");
     }
 ?>

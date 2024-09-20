@@ -3,13 +3,16 @@
         $image = $_FILES["vImage"];
         $nome = $ref;
 
-        if($image != null){
-            $temp_name = $image["tmp_name"];
-            // $type = $_FILES['pImagem']['type'];
-            copy($temp_name, "../assets/images/$nome.jpg");
-        }else{
-            echo "Voce nao realizou o upload de forma satisfatoria.";
+        if(isset($_FILES['vImage']) && $_FILES['vImage']['error'] == UPLOAD_ERR_OK){
+            if($image != null){
+                $temp_name = $image["tmp_name"];
+                // $type = $_FILES['pImagem']['type'];
+                copy($temp_name, "../assets/images/$nome.jpg");
+            }else{
+                echo "Voce nao realizou o upload de forma satisfatoria.";
+            }
         }
+
     }
 
     function deleteImage($ref){

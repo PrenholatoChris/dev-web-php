@@ -7,7 +7,7 @@
 <h1 class="text-center font-bold text-xl">Atualizar Produto</h1>
 <main class="flex justify-center w-full my-10">
   
-    <form id="form" action="../controllers/produtoController.php?vOpcao=1" method="post" class="border w-1/3 bg-white shadow-lg p-6 rounded-xl flex flex-col gap-4" enctype="multipart/form-data">
+    <form id="form" action="../controllers/produtoController.php" method="post" class="border w-1/3 bg-white shadow-lg p-6 rounded-xl flex flex-col gap-4" enctype="multipart/form-data">
         
         <div class="flex flex-col gap-2">
             <label for="vName" class="font-semibold text-gray-700">Nome</label>
@@ -31,7 +31,7 @@
 
         <div class="flex flex-col gap-2">
             <label for="vImage" class="font-semibold text-gray-700">Foto:</label>
-            <input type="file" class="border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" name="vImage" value="<?="../assets/images/$prod->ref.jpg"?>>
+            <input type="file" class="border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" name="vImage">
         </div>
 
         <div class="flex flex-col gap-2">
@@ -46,7 +46,8 @@
             <button type="reset" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-400 transition duration-200">Cancelar</button>
         </div>
 
-        <input type="hidden" name="vOpcao" value="1">
+        <input type="hidden" name="vOpcao" value="5">
+        <input type="hidden" name="vId" value="<?=$prod->id?>">
     </form>
 </main>
 

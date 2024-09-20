@@ -45,11 +45,12 @@
         }
 
         function atualizar(Product $product) {
-            $sql = $this->conn->prepare("UPDATE products SET name = :name, stock = :stock, price = :price, image = :image WHERE id = :id");
+            $sql = $this->conn->prepare("UPDATE products SET name = :name, description = :desc, stock = :stock, price = :price, ref = :ref WHERE id = :id");
             $sql->bindValue(":name", $product->name);
+            $sql->bindValue(":desc", $product->description);
             $sql->bindValue(":stock", $product->stock);
             $sql->bindValue(":price", $product->price);
-            $sql->bindValue(":image", $product->image);
+            $sql->bindValue(":ref", $product->ref);
             $sql->bindValue(":id", $product->id);
             $sql->execute();
         }
