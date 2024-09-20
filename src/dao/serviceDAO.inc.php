@@ -116,12 +116,13 @@ class serviceDAO
     }
 
     function atualizar(Service $service) {
-        $sql = $this->conn->prepare("UPDATE products SET name = :name, description = :description, price = :price , category = :category WHERE id = :id");
+        $sql = $this->conn->prepare("UPDATE products SET name = :name, description = :description, price = :price , category = :category, ref = :ref WHERE id = :id");
         $sql->bindValue(":name", $service->name);
         $sql->bindValue(":description", $service->description);
         $sql->bindValue(":price", $service->price);
         $sql->bindValue(":id", $service->id);
         $sql->bindValue(":category", $service->category);
+        $sql->bindValue(":ref", $service->reference);
         $sql->execute();
         $this->atualizarSizes($service->id , $service->sizes);
     }

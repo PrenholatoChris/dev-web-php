@@ -34,7 +34,6 @@
             $serviceDAO->cadastrar($service);
             
             uploadImage($vRef);
-            
 
             header("Location: ./serviceController.php?vOpcao=2");
         }
@@ -49,9 +48,8 @@
             $serviceDAO = new serviceDAO();
             $serviceDAO->atualizar($service);
             
-            if(isset($_FILES['vImage']) && $_FILES['vImage']['error'] == UPLOAD_ERR_OK){
-                uploadImage($vRef);
-            }
+            uploadImage($vRef);
+
             header("Location: ./serviceController.php?vOpcao=6");    
         }
     }
