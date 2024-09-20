@@ -81,15 +81,17 @@ INSERT INTO `addresses` (user_id, postal_code, uf, city, street, complement,neig
 INSERT INTO `addresses` (user_id, postal_code, uf, city, street, complement,neighborhood, number, phone, receiver) VALUES ("2", "29166894", "ES", "Vitoria", "Rua Algusto robert", "Apartamento", "Jardim da penha", "11", "27981611010", "Casa de vitoria");
 INSERT INTO `addresses` (user_id, postal_code, uf, city, street, complement,neighborhood, number, phone, receiver) VALUES ("3", "29500000", "ES", "Alegre", "Rua Quinze de Agosto", "Casa", "Centro", "190", "27988711010", "Casa de alegre");
 
-INSERT INTO `products` (name, description, stock, price, ref, type, category) VALUES ("daniel", "descricao do produto grande caro", 900, 99.99, "1", "p", "eu");
-INSERT INTO `products` (name, description, stock, price, ref, type, category) VALUES ("daniel2.0", "Produto muito caro e gigantesco", 10, 999.99, "2", "p", "eu");
-INSERT INTO `products` (name, description, stock, price, ref, type, category) VALUES ("Celular", "celular hightec de alta tecnologia", 2, 99.99, "3", "p", "eu");
+INSERT INTO `products` (name, description, stock, price, ref, type, category) VALUES ("Tinta de Impresora", "Tinta de impressora muito top", 900, 50.74, "tinta", "p", "eu");
+INSERT INTO `products` (name, description, stock, price, ref, type, category) VALUES ("Impressora", "Impressora nova linda que nao da problema", 10, 980.98, "impressora", "p", "eu");
+INSERT INTO `products` (name, description, stock, price, ref, type, category) VALUES ("Resma de A4", "500 unidades de folhas A4 branca", 2, 35.89, "resma", "p", "eu");
 
-INSERT INTO `products` (name, description, stock, price, ref, type, category) VALUES ("Impressao", "Impressão de documentos e imagens em diversos tamanhos", 0, 1, "a", "s", "impressao");
+INSERT INTO `products` (name, description, stock, price, ref, type, category) VALUES ("Impressao", "Impressão de documentos e imagens em diversos tamanhos, A4 por padrao", 0, 1, "impressao", "s", "impressao");
 INSERT INTO `service_prop` (name, price, service_id, type) VALUES ("A4", 0.5, 4, "tamanho");
 INSERT INTO `service_prop` (name, price, service_id, type) VALUES ("A3", 1, 4, "tamanho");
 INSERT INTO `service_prop` (name, price, service_id, type) VALUES ("A2", 2, 4, "tamanho");
 
-INSERT INTO `products` (name, description, stock, price, ref, type, category) VALUES ("Desenho Personalizado", "Fazemos desenhos personalizados a sua escolha e preferencia", 0, 50.50, "a", "s", "arte");
-INSERT INTO `service_prop` (name, price, service_id, type) VALUES ("A4", 0, 5, "tamanho");
-INSERT INTO `service_prop` (name, price, service_id, type) VALUES ("A3", 5, 5, "cor");
+INSERT INTO `products` (name, description, stock, price, ref, type, category) VALUES ("Desenho Personalizado", "Fazemos desenhos personalizados a sua escolha e preferencia, Preto e branco em folha A4 por padrao ", 0, 50.50, "desenho", "s", "arte");
+INSERT INTO `service_prop` (name, price, service_id, type) VALUES ("A3", 0, 2, "tamanho");
+INSERT INTO `service_prop` (name, price, service_id, type) VALUES ("A2", 0, 5, "tamanho");
+INSERT INTO `service_prop` (name, price, service_id, type) VALUES ("A1", 0, 8, "tamanho");
+INSERT INTO `service_prop` (name, price, service_id, type) VALUES ("Colorido", 5, 5, "cor");
