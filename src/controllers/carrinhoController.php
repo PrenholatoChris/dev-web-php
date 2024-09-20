@@ -132,7 +132,7 @@
 
         $idx = buscaServicoCarrinho($service->id, $carrinho, $sizeIdValidator);
         if($idx != -1){
-            if($opcao == 7){
+            if($opcao == 9){
                 $carrinho[$idx]->addQuantidade();
             }else{
                 $carrinho[$idx]->decreaseQuantidade();

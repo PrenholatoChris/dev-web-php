@@ -5,7 +5,7 @@
     $encomendas = $_SESSION["encomendas"];
 ?>
 
-<div class="min-h-screen bg-gray-100">
+<div class="h-full bg-gray-100">
     <div class="container mx-auto p-6">
         <h1 class="text-3xl font-bold mb-6 text-center">Minhas Encomendas</h1>
         <?php if (empty($encomendas)): ?>
@@ -38,3 +38,7 @@
         <?php endif; ?>
     </div>
 </div>
+
+<?php 
+    require_once './includes/footer.php';
+?>
