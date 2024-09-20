@@ -86,12 +86,11 @@ INSERT INTO `products` (name, description, stock, price, ref, type, category) VA
 INSERT INTO `products` (name, description, stock, price, ref, type, category) VALUES ("Resma de A4", "500 unidades de folhas A4 branca", 2, 35.89, "resma", "p", "eu");
 
 INSERT INTO `products` (name, description, stock, price, ref, type, category) VALUES ("Impressao", "Impressão de documentos e imagens em diversos tamanhos, A4 por padrao", 0, 1, "impressao", "s", "impressao");
-INSERT INTO `service_prop` (name, price, service_id, type) VALUES ("A4", 0.5, 4, "tamanho");
 INSERT INTO `service_prop` (name, price, service_id, type) VALUES ("A3", 1, 4, "tamanho");
 INSERT INTO `service_prop` (name, price, service_id, type) VALUES ("A2", 2, 4, "tamanho");
 
 INSERT INTO `products` (name, description, stock, price, ref, type, category) VALUES ("Desenho Personalizado", "Fazemos desenhos personalizados a sua escolha e preferencia, Preto e branco em folha A4 por padrao ", 0, 50.50, "desenho", "s", "arte");
-INSERT INTO `service_prop` (name, price, service_id, type) VALUES ("A3", 0, 2, "tamanho");
-INSERT INTO `service_prop` (name, price, service_id, type) VALUES ("A2", 0, 5, "tamanho");
-INSERT INTO `service_prop` (name, price, service_id, type) VALUES ("A1", 0, 8, "tamanho");
+INSERT INTO `service_prop` (name, price, service_id, type) VALUES ("A3", 1, 2, "tamanho");
+INSERT INTO `service_prop` (name, price, service_id, type) VALUES ("A2", 2, 5, "tamanho");
+INSERT INTO `service_prop` (name, price, service_id, type) VALUES ("A1", 7, 8, "tamanho");
 INSERT INTO `service_prop` (name, price, service_id, type) VALUES ("Colorido", 5, 5, "cor");
