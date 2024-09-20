@@ -106,7 +106,7 @@
         $email = $_REQUEST["vEmail"];
         // $senha = $_REQUEST["vSenha"]; podemos pedir para reconfirmar a senha antes
         $updatedUser = new User();
-        $updatedUser->setUser($name, 99999999999,$email, $usr->password, $usr->is_admin, $usr->id);
+        $updatedUser->setUser($name, $usr->cpf ,$email, $usr->password, $usr->is_admin, $usr->id);
 
         $userDAO = new userDAO();
         $userDAO->atualizar($updatedUser);
